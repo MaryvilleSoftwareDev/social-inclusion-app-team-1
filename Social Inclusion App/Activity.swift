@@ -1,6 +1,6 @@
 //
 //  Activity.swift
-//  TeamProjectDraft
+//  Social Inclusion App
 //
 //  Created by John Zaiss on 4/11/17.
 //  Copyright © 2017 John Zaiss. All rights reserved.
