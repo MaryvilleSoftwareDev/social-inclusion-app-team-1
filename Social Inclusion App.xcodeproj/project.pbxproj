@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		430355181EA5A769007330A9 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430355171EA5A769007330A9 /* Participant.swift */; };
+		4303551A1EA5CC97007330A9 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430355191EA5CC97007330A9 /* Activity.swift */; };
 		893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C61EA5591900EB9D51 /* AppDelegate.swift */; };
 		893583C91EA5591900EB9D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C81EA5591900EB9D51 /* ViewController.swift */; };
 		893583CC1EA5591900EB9D51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893583CA1EA5591900EB9D51 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		430355171EA5A769007330A9 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		430355191EA5CC97007330A9 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		893583C31EA5591900EB9D51 /* Social Inclusion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Inclusion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893583C61EA5591900EB9D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		893583C81EA5591900EB9D51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				893583C81EA5591900EB9D51 /* ViewController.swift */,
 				893583CA1EA5591900EB9D51 /* Main.storyboard */,
 				430355171EA5A769007330A9 /* Participant.swift */,
+				430355191EA5CC97007330A9 /* Activity.swift */,
 				893583CD1EA5591900EB9D51 /* Assets.xcassets */,
 				893583CF1EA5591900EB9D51 /* LaunchScreen.storyboard */,
 				893583D21EA5591900EB9D51 /* Info.plist */,
@@ -141,6 +144,7 @@
 			files = (
 				893583C91EA5591900EB9D51 /* ViewController.swift in Sources */,
 				893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */,
+				4303551A1EA5CC97007330A9 /* Activity.swift in Sources */,
 				430355181EA5A769007330A9 /* Participant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
