@@ -13,6 +13,7 @@ enum EmotionEmoji {
     case positive
     case neutral
     case negative
+    case none
     
     var display: String {
         
@@ -20,6 +21,7 @@ enum EmotionEmoji {
         case .positive: return "😀"
         case .neutral: return "😐"
         case .negative: return "☹️"
+        case .none: return " "
         }
         
     }
@@ -32,12 +34,12 @@ class ActivityLogItem: Activity {
     var recording: String? //audio file
     var participantCode: String
     
-    init(activity: Activity, totalTime: Int, reaction: EmotionEmoji, recording: String?, participantCode: String) {
+    override init() {
         
         self.dateCompleted = Date()
-        self.reaction = reaction
-        self.recording = recording // probably better to have function in this class to start the recorder
-        self.participantCode = participantCode
+        self.reaction = .none
+        self.recording = "" // probably better to have function in this class to start the recorder
+        self.participantCode = ""
         super.init()
         
         /*
