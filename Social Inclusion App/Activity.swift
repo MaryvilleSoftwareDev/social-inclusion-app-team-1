@@ -17,6 +17,8 @@ struct Instructions {
     var image:UIImage?
     var startTimer = [Date]()
     var stopTimer = [Date]()
+    var socialSkill:SocialSkills?
+    var socialSkillText:String?
     
     /*
      need a start timer function
@@ -32,7 +34,7 @@ struct SocialSkills {
     
     var skillName:String
     var skillDetails:String
-    var skillInstructions = [Instructions]()
+    // var skillInstructions = [Instructions]()
     
     // once read in as part of the readActivities function the data is static as the app runs
 }
@@ -45,14 +47,14 @@ class Activity {
     var description:String
     var icon:UIImage
     var category:String
-    var socialSkills = [SocialSkills]()
+    var instructions = [Instructions]()
     
     init() {
         self.name = ""
         self.description = ""
         self.icon = UIImage(named: "")!
         self.category = ""
-        self.socialSkills = [SocialSkills]()
+        self.instructions = [Instructions]()
     }
     // once read in as part of the readActivities function the data is static as the app runs
 }
