@@ -30,12 +30,14 @@ class ActivityLogItem: Activity {
     var dateCompleted: Date
     var reaction: EmotionEmoji
     var recording: String? //audio file
+    var participantCode: String
     
-    init(activity: Activity, totalTime: Int, reaction: EmotionEmoji, recording: String?) {
+    init(activity: Activity, totalTime: Int, reaction: EmotionEmoji, recording: String?, participantCode: String) {
         
         self.dateCompleted = Date()
         self.reaction = reaction
         self.recording = recording // probably better to have function in this class to start the recorder
+        self.participantCode = participantCode
         super.init()
         
         /*
