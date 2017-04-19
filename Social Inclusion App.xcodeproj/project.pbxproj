@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430355181EA5A769007330A9 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430355171EA5A769007330A9 /* Participant.swift */; };
+		4303551A1EA5CC97007330A9 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430355191EA5CC97007330A9 /* Activity.swift */; };
+		4303551C1EA5CDFD007330A9 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4303551B1EA5CDFD007330A9 /* ActivityLog.swift */; };
+		4303551E1EA5CF8A007330A9 /* AudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */; };
 		893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C61EA5591900EB9D51 /* AppDelegate.swift */; };
 		893583C91EA5591900EB9D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C81EA5591900EB9D51 /* ViewController.swift */; };
 		893583CC1EA5591900EB9D51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893583CA1EA5591900EB9D51 /* Main.storyboard */; };
@@ -15,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		430355171EA5A769007330A9 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		430355191EA5CC97007330A9 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		4303551B1EA5CDFD007330A9 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
+		4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordingViewController.swift; sourceTree = "<group>"; };
 		893583C31EA5591900EB9D51 /* Social Inclusion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Inclusion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893583C61EA5591900EB9D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		893583C81EA5591900EB9D51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +65,10 @@
 				893583C61EA5591900EB9D51 /* AppDelegate.swift */,
 				893583C81EA5591900EB9D51 /* ViewController.swift */,
 				893583CA1EA5591900EB9D51 /* Main.storyboard */,
+				4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */,
+				430355171EA5A769007330A9 /* Participant.swift */,
+				430355191EA5CC97007330A9 /* Activity.swift */,
+				4303551B1EA5CDFD007330A9 /* ActivityLog.swift */,
 				893583CD1EA5591900EB9D51 /* Assets.xcassets */,
 				893583CF1EA5591900EB9D51 /* LaunchScreen.storyboard */,
 				893583D21EA5591900EB9D51 /* Info.plist */,
@@ -136,8 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4303551C1EA5CDFD007330A9 /* ActivityLog.swift in Sources */,
 				893583C91EA5591900EB9D51 /* ViewController.swift in Sources */,
 				893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */,
+				4303551E1EA5CF8A007330A9 /* AudioRecordingViewController.swift in Sources */,
+				4303551A1EA5CC97007330A9 /* Activity.swift in Sources */,
+				430355181EA5A769007330A9 /* Participant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +315,7 @@
 				893583D71EA5591900EB9D51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
