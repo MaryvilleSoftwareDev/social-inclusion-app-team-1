@@ -13,22 +13,21 @@ import UIKit
 struct Instructions {
     
     var title:String
+    var instructionCode:String
     var details:String
     var image:UIImage?
-    var startTimer = [Date]()
-    var stopTimer = [Date]()
     var socialSkill:SocialSkills?
     var socialSkillText:String?
     
-    init(title: String, details: String, image: UIImage?, startTimer: [Date], stopTimer: [Date], socialSkill: SocialSkills?, socialSkillText: String?){
+    init(title: String, instructionCode: String, details: String, image: UIImage?, socialSkill: SocialSkills?, socialSkillText: String?){
         self.title = title
+        self.instructionCode = instructionCode
         self.details = details
         self.image = image
-        self.startTimer = startTimer
-        self.stopTimer = stopTimer
         self.socialSkill = socialSkill
         self.socialSkillText = socialSkillText
     }
+    
     /*
      need a start timer function
      need a stop timer function, record start time in the timer value then calculate on stopping it
@@ -59,13 +58,15 @@ struct SocialSkills {
 class Activity {
     
     var name:String
+    var activityCode:String
     var description:String
     var icon:UIImage
     var category:String
     var instructions = [Instructions]()
     
-    init(name: String, description: String, icon: UIImage, category: String, instructions: [Instructions]) {
+    init(name: String, activityCode: String, description: String, icon: UIImage, category: String, instructions: [Instructions]) {
         self.name = name
+        self.activityCode = activityCode
         self.description = description
         self.icon = icon
         self.category = category

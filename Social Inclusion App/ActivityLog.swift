@@ -13,6 +13,7 @@ enum EmotionEmoji {
     case positive
     case neutral
     case negative
+    case none
     
     var display: String {
         
@@ -20,32 +21,54 @@ enum EmotionEmoji {
         case .positive: return "😀"
         case .neutral: return "😐"
         case .negative: return "☹️"
+        case .none: return " "
+            
         }
         
     }
 }
 
-class ActivityLogItem: Activity {
+struct InstructionTimer {
     
-    var dateCompleted: Date
+    var instructionCode: String
+    var startTime: Date
+    var stopTime: Date?
+    
+    mutating func startInstructionTimer(forInstruction: String) -> InstructionTimer {
+        self.instructionCode = forInstruction
+        self.startTime = Date()
+        return self
+    }
+
+    mutating func stopInstructionTimer(forInstruction: String) -> InstructionTimer {
+        self.instructionCode = forInstruction
+        self.stopTime = Date()
+        return self
+    }
+}
+
+class ActivityLogItem {
+    
+    var dateCompleted: Date?
     var reaction: EmotionEmoji
     var recording: String? //audio file
     var participantCode: String
+    var activityCode: String
+    var instructionCode: String
+    var instructionTimer = [InstructionTimer]()
     
-    init(activity: Activity, totalTime: Int, reaction: EmotionEmoji, recording: String?, participantCode: String) {
+    init() {
         
-        self.dateCompleted = Date()
-        self.reaction = reaction
-        self.recording = recording // probably better to have function in this class to start the recorder
-        self.participantCode = participantCode
-        super.init(name: "", description: "", icon: #imageLiteral(resourceName: "grand-piano"), category: "", instructions: placeHolderInstructions)
-        
-        /*
-         Additiona functions needed are
-         createAudioRecording
-         */
-        
+        self.dateCompleted = nil
+        self.reaction = .none
+        self.recording = ""
+        self.activityCode = ""
+        self.instructionCode = ""
+        self.participantCode = ""
+
     }
+    
+    
     
     // placeholder function
     func setEmotionEmoji() -> EmotionEmoji {
