@@ -11,6 +11,7 @@
 		4303551A1EA5CC97007330A9 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430355191EA5CC97007330A9 /* Activity.swift */; };
 		4303551C1EA5CDFD007330A9 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4303551B1EA5CDFD007330A9 /* ActivityLog.swift */; };
 		4303551E1EA5CF8A007330A9 /* AudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */; };
+		430755BA1EB0128100A855AD /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = 430755B91EB0128100A855AD /* activities.json */; };
 		893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C61EA5591900EB9D51 /* AppDelegate.swift */; };
 		893583C91EA5591900EB9D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C81EA5591900EB9D51 /* ViewController.swift */; };
 		893583CC1EA5591900EB9D51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893583CA1EA5591900EB9D51 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		430355191EA5CC97007330A9 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4303551B1EA5CDFD007330A9 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordingViewController.swift; sourceTree = "<group>"; };
+		430755B91EB0128100A855AD /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activities.json; sourceTree = "<group>"; };
 		893583C31EA5591900EB9D51 /* Social Inclusion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Inclusion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893583C61EA5591900EB9D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		893583C81EA5591900EB9D51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		893583C51EA5591900EB9D51 /* Social Inclusion App */ = {
 			isa = PBXGroup;
 			children = (
+				430755B91EB0128100A855AD /* activities.json */,
 				F4640D621EAED97900DC02E2 /* LoginViewController.swift */,
 				F4640D5C1EAED97200DC02E2 /* ActivityCell.swift */,
 				F4640D5D1EAED97200DC02E2 /* ActivityCollectionViewController.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				430755BA1EB0128100A855AD /* activities.json in Resources */,
 				893583D11EA5591900EB9D51 /* LaunchScreen.storyboard in Resources */,
 				893583CE1EA5591900EB9D51 /* Assets.xcassets in Resources */,
 				893583CC1EA5591900EB9D51 /* Main.storyboard in Resources */,
