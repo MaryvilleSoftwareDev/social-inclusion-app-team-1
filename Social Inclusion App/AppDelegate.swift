@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Social Inclusion App
+//  New Social Inclusion App
 //
-//  Created by Gross, Paul on 4/17/17.
-//  Copyright © 2017 Maryville Information Systems. All rights reserved.
+//  Created by Mary Chopin on 4/21/17.
+//  Copyright © 2017 David Chopin. All rights reserved.
 //
 
 import UIKit

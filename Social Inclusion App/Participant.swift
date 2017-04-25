@@ -1,9 +1,9 @@
 //
 //  Participant.swift
-//  Social Inclusion App
+//  New Social Inclusion App
 //
-//  Created by John Zaiss on 4/11/17.
-//  Copyright © 2017 John Zaiss. All rights reserved.
+//  Created by Mary Chopin on 4/21/17.
+//  Copyright © 2017 David Chopin. All rights reserved.
 //
 
 import UIKit
