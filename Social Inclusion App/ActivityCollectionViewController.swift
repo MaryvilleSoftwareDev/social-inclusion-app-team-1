@@ -46,6 +46,21 @@ class ActivityCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let filepath = Bundle.main.path(forResource: "activities", ofType: "json") {
+            let data = NSData(contentsOfFile: filepath)
+            let jsonObject = try? JSONSerialization.jsonObject(with: data! as Data, options: [])
+            
+            if let jsonArray = jsonObject as? [Any] {
+                for jsonActivity in jsonArray {
+                    if let activityDictionary = jsonActivity as? [String:Any] {
+                        print ("Reading activities.json Success!")
+                    }
+                }
+            }
+            
+            
+        }
     }
     
 }
