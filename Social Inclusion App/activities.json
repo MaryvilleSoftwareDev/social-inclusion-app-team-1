@@ -4,7 +4,7 @@
   "activityCode":"LI1",
   "description":"You will play an instrument",
   "category":"Do we need this?",
-  "icon":"#imageLiteral(resourceName: grand-piano)",
+  "icon":"grand-piano",
   "instructions":
   [
     {
@@ -38,7 +38,7 @@
   "activityCode":"ME1",
   "description":"Visiting your favorite restaurant or café is always fun. Most times your family or friends will go with you to enjoy a meal or a piece of cake.",
   "category":"Do we need this?",
-  "icon":"#imageLiteral(resourceName: coffee)",
+  "icon":"coffee",
   "instructions":
   [
     {
@@ -72,7 +72,7 @@
   "activityCode":"WD1",
   "description":"You will walk your dog",
   "category":"Do we need this?",
-  "icon":"#imageLiteral(resourceName: grand-piano)",
+  "icon":"dog walk",
   "instructions":
   [
     {
@@ -106,7 +106,7 @@
   "activityCode":"GC1",
   "description":"You will go to church",
   "category":"Do we need this?",
-  "icon":"#imageLiteral(resourceName: church)",
+  "icon":"church",
   "instructions":
   [
     {
