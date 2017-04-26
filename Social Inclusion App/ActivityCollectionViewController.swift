@@ -16,15 +16,17 @@ let placeHolderInstructions = [Instructions(title: "", instructionCode: "Code1",
 
 class ActivityCollectionViewController: UICollectionViewController {
     
-    let activities = [Activity(name: "Learn Instrument", activityCode: "AC1", description: "You will play an instrument", icon: #imageLiteral(resourceName: "grand-piano"), category: "example skill", instructions: instrumentInstructions), Activity(name: "Get Coffee", activityCode: "AC2", description: "You will go out and get some coffee", icon: #imageLiteral(resourceName: "coffee"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Walk Dog", activityCode: "AC3", description: "You will walk your dog", icon: #imageLiteral(resourceName: "dog walk"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Go To Chruch", activityCode: "AC4", description: "You will go to church", icon: #imageLiteral(resourceName: "church"), category: "example skill", instructions: placeHolderInstructions)]
+    var jsonActivities:[Activity] = [Activity]()
     
+/*    let activities = [Activity(name: "Learn Instrument", activityCode: "AC1", description: "You will play an instrument", icon: #imageLiteral(resourceName: "grand-piano"), category: "example skill", instructions: instrumentInstructions), Activity(name: "Get Coffee", activityCode: "AC2", description: "You will go out and get some coffee", icon: #imageLiteral(resourceName: "coffee"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Walk Dog", activityCode: "AC3", description: "You will walk your dog", icon: #imageLiteral(resourceName: "dog walk"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Go To Chruch", activityCode: "AC4", description: "You will go to church", icon: #imageLiteral(resourceName: "church"), category: "example skill", instructions: placeHolderInstructions)]
+ */
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return activities.count
+        return jsonActivities.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as? ActivityCell
-        let item = activities[indexPath.row]
+        let item = jsonActivities[indexPath.row]
         
         cell?.cellImage.image = item.icon
         cell?.cellActivityTitle.text = item.name
@@ -37,7 +39,7 @@ class ActivityCollectionViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToInstructions" {
             let cell = collectionView?.indexPath(for: sender as! UICollectionViewCell)
-            let selectedActivity = activities[(cell?.row)!]
+            let selectedActivity = jsonActivities[(cell?.row)!]
             let instructionsViewController = segue.destination as! InstructionsViewController
             
             instructionsViewController.instructionActivity = selectedActivity
@@ -54,7 +56,7 @@ class ActivityCollectionViewController: UICollectionViewController {
             if let jsonArray = jsonObject as? [Any] {
                 for jsonActivity in jsonArray {
                     if let activityDictionary = jsonActivity as? [String:Any] {
-                        print ("Reading activities.json Success!")
+                        jsonActivities.append( Activity(from:activityDictionary))
                     }
                 }
             }

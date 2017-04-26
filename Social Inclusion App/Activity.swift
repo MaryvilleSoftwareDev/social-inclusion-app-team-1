@@ -85,7 +85,7 @@ class Activity {
     var name:String
     var activityCode:String
     var description:String
-    var icon:UIImage
+    var icon:UIImage?
     var category:String
     var instructions = [Instructions]()
     
@@ -104,7 +104,21 @@ class Activity {
         self.name = dict["name"] as! String
         self.activityCode = dict["activityCode"] as! String
         self.description = dict["description"] as! String
-        self.icon = dict["icon"] as! UIImage
+        //self.icon = dict["icon"] as! UIImage
+        
+        let iconText = dict["icon"] as! String
+        if iconText == "coffee" {
+            self.icon = #imageLiteral(resourceName: "coffee")
+        } else if iconText == "grand-piano" {
+            self.icon = #imageLiteral(resourceName: "grand-piano")
+        } else if iconText == "dog walk" {
+            self.icon = #imageLiteral(resourceName: "dog walk")
+        } else if iconText == "church" {
+            self.icon = #imageLiteral(resourceName: "church")
+        } else {
+            self.icon = nil
+        }
+        
         self.category = dict["category"] as! String
         
         var instructionsTemp = [Instructions]()
