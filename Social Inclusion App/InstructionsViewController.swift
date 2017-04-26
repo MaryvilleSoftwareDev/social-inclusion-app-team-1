@@ -15,31 +15,45 @@ class InstructionsViewController: UIViewController {
     
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var prevButton: UIBarButtonItem!
+    
     var instructionActivity: Activity!
     
-    var currentInstructionIndex: Int = 0
+    var selectedInstruction: Int! = 0
     
     override func viewWillAppear(_ animated: Bool) {
+        
         instructionsNavigationController.title = instructionActivity.name
         
-        instructionsTextView.text = instructionActivity.instructions[currentInstructionIndex].details
+        instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
+        
+        if selectedInstruction + 1 == instructionActivity.instructions.count {
+            nextButton.setTitle("Finish", for: .normal)
+        }
+        
+        if selectedInstruction == 0 {
+            prevButton.title = "Activities"
+        }
     }
 
     @IBAction func nextButtonPressed(_ sender: Any) {
-        
-        if currentInstructionIndex < (instructionActivity.instructions.endIndex - 2)
-        {
-            nextButton.setTitle("Next", for: .normal)
-            currentInstructionIndex += 1
-            instructionsTextView.text = instructionActivity.instructions[currentInstructionIndex].details
-        } else if currentInstructionIndex == (instructionActivity.instructions.endIndex - 2){
-            currentInstructionIndex += 1
-            instructionsTextView.text = instructionActivity.instructions[currentInstructionIndex].details
-            nextButton.setTitle("Finish", for: .normal)
+        if selectedInstruction + 1 == instructionActivity.instructions.count {
+            
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EndOfInstructions") as! EndOfInstructionsViewController
+            
+            self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {
-            performSegue(withIdentifier: "instructionsFinishedSegue", sender: nextButton)
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
+            
+            nextViewController.selectedInstruction = selectedInstruction + 1
+            nextViewController.instructionActivity = instructionActivity
+           
+            
+            self.navigationController?.pushViewController(nextViewController, animated: true)
         }
-    
-    
 }
+    @IBAction func prevButtonSelected(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }

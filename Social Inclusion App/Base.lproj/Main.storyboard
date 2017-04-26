@@ -152,7 +152,7 @@
         <!--Instructions-->
         <scene sceneID="Dgg-dI-2dx">
             <objects>
-                <viewController title="Instructions" id="9rd-5v-NDi" customClass="InstructionsViewController" customModule="Social_Inclusion_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Instructions" title="Instructions" id="9rd-5v-NDi" customClass="InstructionsViewController" customModule="Social_Inclusion_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fo6-ck-dkn"/>
                         <viewControllerLayoutGuide type="bottom" id="vSP-UT-FHc"/>
@@ -180,22 +180,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Instructions" id="hqA-U3-Yxx"/>
+                    <navigationItem key="navigationItem" title="Instructions" id="hqA-U3-Yxx">
+                        <barButtonItem key="backBarButtonItem" title="Instructions" id="sRa-aM-PxF"/>
+                        <barButtonItem key="leftBarButtonItem" title="Previous" id="jJB-Ij-LuT">
+                            <connections>
+                                <action selector="prevButtonSelected:" destination="9rd-5v-NDi" id="inm-NP-YCM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="instructionsNavigationController" destination="hqA-U3-Yxx" id="TF6-Fu-FZf"/>
                         <outlet property="instructionsTextView" destination="Zrf-B1-wqk" id="w6j-Yc-Fza"/>
                         <outlet property="nextButton" destination="GMz-ks-4Wz" id="CYN-Xz-YuK"/>
-                        <segue destination="Lma-GX-AXv" kind="show" identifier="instructionsFinishedSegue" id="M7K-dP-o6h"/>
+                        <outlet property="prevButton" destination="jJB-Ij-LuT" id="BVN-8L-aU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cW4-vC-3sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2612" y="151.57421289355324"/>
         </scene>
-        <!--View Controller-->
+        <!--End Of Instructions View Controller-->
         <scene sceneID="vPi-LB-joV">
             <objects>
-                <viewController id="Lma-GX-AXv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndOfInstructions" id="Lma-GX-AXv" customClass="EndOfInstructionsViewController" customModule="Social_Inclusion_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9e6-Tf-tkz"/>
                         <viewControllerLayoutGuide type="bottom" id="fp9-sc-nfN"/>
