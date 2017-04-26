@@ -1,0 +1,138 @@
+[
+ {
+  "name":"Learn Instrument",
+  "activityCode":"LI1",
+  "description":"You will play an instrument",
+  "category":"Do we need this?",
+  "icon":"grand-piano",
+  "instructions":
+  [
+    {
+	 "title":"Buy an instrument",
+     "instructionCode":"LI1-S1",
+     "details":"You may want to start with an affordable insrument",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",
+    },
+	{
+	 "title":"Find a good instructor",
+     "instructionCode":"LI1-S2",
+     "details":"If you cannot find an affordable instructor, there are many instrument teaching books for cheap",
+	},
+	{
+	 "title":"Begin performing in front of people you know",
+     "instructionCode":"LI1-S3",
+     "details":"Start with performing in front of those you are closest to before performing to less well-known peers",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",	
+	},
+	{
+	 "title":"Step 4",
+     "instructionCode":"LI1-S4",
+     "details":"Instruction details with no social skill",
+	}
+  ]
+ },
+ {
+  "name":"Ordering a Meal",
+  "activityCode":"ME1",
+  "description":"Visiting your favorite restaurant or café is always fun. Most times your family or friends will go with you to enjoy a meal or a piece of cake.",
+  "category":"Do we need this?",
+  "icon":"coffee",
+  "instructions":
+  [
+    {
+	 "title":"Step 1",
+     "instructionCode":"ME1-S1",
+     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘waiter’ who will help you with your order – give them a friendly smile and say hello!",
+	 "socialSkill":"greeting",
+	 "socialSkillText":"Do you still remember how to ‘greet’ people you meet for the first time?",
+    },
+	{
+	 "title":"Step 2",
+     "instructionCode":"ME1-S2",
+     "details":"On the table you will find a list of all your favorite foods, this is called a menu – choose which meal you would like to order and tell the waiter your choice. Remember to thank the waiter after they bring your meal.",
+	},
+	{
+	 "title":"Step 3",
+     "instructionCode":"ME1-S3",
+     "details":"Enjoy your lovely meal and when your family or friends are having good conversation at the table make sure to listen well.",
+	 "socialSkill":"listening",
+	 "socialSkillText":"Do you still remember how to ‘listen’ when enjoying good conversation",	
+	},
+	{
+	 "title":"Step 4",
+     "instructionCode":"ME1-S4",
+     "details":"When you are done, remember to pay for the meal – ask the waiter to bring you the bill or ask how much your meal cost.",
+	}
+  ]
+ },
+ {
+ "name":"Walk Dog",
+  "activityCode":"WD1",
+  "description":"You will walk your dog",
+  "category":"Do we need this?",
+  "icon":"dog walk",
+  "instructions":
+  [
+    {
+	 "title":"Step 1",
+     "instructionCode":"WD1-S1",
+     "details":"Instruction details",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",
+    },
+	{
+	 "title":"Step 2",
+     "instructionCode":"WD1-S2",
+     "details":"Instruction details with no social skill",
+	},
+	{
+	 "title":"Step 3",
+     "instructionCode":"WD1-S3",
+     "details":"Instruction details",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",	
+	},
+	{
+	 "title":"Step 4",
+     "instructionCode":"WD1-S4",
+     "details":"Instruction details with no social skill",
+	}
+  ]
+ },
+ {
+ "name":"Go To Chruch",
+  "activityCode":"GC1",
+  "description":"You will go to church",
+  "category":"Do we need this?",
+  "icon":"church",
+  "instructions":
+  [
+    {
+	 "title":"Step 1",
+     "instructionCode":"GC1-S1",
+     "details":"Instruction details",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",
+    },
+	{
+	 "title":"Step 2",
+     "instructionCode":"GC1-S2",
+     "details":"Instruction details with no social skill",
+	},
+	{
+	 "title":"Step 3",
+     "instructionCode":"GC1-S3",
+     "details":"Instruction details",
+	 "socialSkill":"skill",
+	 "socialSkillText":"Describe how the skill applies",	
+	},
+	{
+	 "title":"Step 4",
+     "instructionCode":"GC1-S4",
+     "details":"Instruction details with no social skill",
+	}
+  ]
+ }
+]

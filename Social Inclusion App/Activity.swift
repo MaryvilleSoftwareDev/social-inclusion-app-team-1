@@ -16,16 +16,41 @@ struct Instructions {
     var instructionCode:String
     var details:String
     var image:UIImage?
-    var socialSkill:SocialSkills?
+    var socialSkill:String?
     var socialSkillText:String?
     
-    init(title: String, instructionCode: String, details: String, image: UIImage?, socialSkill: SocialSkills?, socialSkillText: String?){
+    init(title: String, instructionCode: String, details: String, image: UIImage?, socialSkill: String?, socialSkillText: String?){
         self.title = title
         self.instructionCode = instructionCode
         self.details = details
         self.image = image
         self.socialSkill = socialSkill
         self.socialSkillText = socialSkillText
+    }
+    
+    init(from dict: [String:Any?]) {
+        self.title = dict["title"] as! String
+        self.instructionCode = dict["instructionCode"] as! String
+        self.details = dict["details"] as! String
+        
+        if let imageFile = dict["image"] as? UIImage {
+            self.image = imageFile
+        } else {
+            self.image = nil
+        }
+        
+        if let socialSkillString = dict["socialSkill"] as? String {
+            self.socialSkill = socialSkillString
+        } else {
+            self.socialSkill = nil
+        }
+        
+        if let socialSkillTextString = dict["socialSkillText"] as? String {
+            self.socialSkillText = socialSkillTextString
+        } else {
+            self.socialSkillText = nil
+        }
+        
     }
     
     /*
@@ -60,7 +85,7 @@ class Activity {
     var name:String
     var activityCode:String
     var description:String
-    var icon:UIImage
+    var icon:UIImage?
     var category:String
     var instructions = [Instructions]()
     
@@ -71,6 +96,40 @@ class Activity {
         self.icon = icon
         self.category = category
         self.instructions = instructions
+    }
+    
+    
+    init (from dict: [String:Any?]) {
+        
+        self.name = dict["name"] as! String
+        self.activityCode = dict["activityCode"] as! String
+        self.description = dict["description"] as! String
+        //self.icon = dict["icon"] as! UIImage
+        
+        let iconText = dict["icon"] as! String
+        if iconText == "coffee" {
+            self.icon = #imageLiteral(resourceName: "coffee")
+        } else if iconText == "grand-piano" {
+            self.icon = #imageLiteral(resourceName: "grand-piano")
+        } else if iconText == "dog walk" {
+            self.icon = #imageLiteral(resourceName: "dog walk")
+        } else if iconText == "church" {
+            self.icon = #imageLiteral(resourceName: "church")
+        } else {
+            self.icon = nil
+        }
+        
+        self.category = dict["category"] as! String
+        
+        var instructionsTemp = [Instructions]()
+        if let instructionsArray = dict["instructions"] as! [Any]? {
+            for instruction in instructionsArray {
+                if let instructionsDict = instruction as? [String:Any] {
+                    instructionsTemp.append( Instructions(from: instructionsDict))
+                }
+            }
+        }
+        self.instructions = instructionsTemp
     }
     // once read in as part of the readActivities function the data is static as the app runs
 }
