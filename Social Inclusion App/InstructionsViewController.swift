@@ -39,7 +39,12 @@ class InstructionsViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: Any) {
         if selectedInstruction + 1 == instructionActivity.instructions.count {
             
-            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EndOfInstructions") as! EndOfInstructionsViewController
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+            
+            let selectedActivity = instructionActivity
+            let reflectionViewController = nextViewController 
+            
+            reflectionViewController.reflectionActivity = selectedActivity
             
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {

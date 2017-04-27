@@ -8,6 +8,8 @@
 
 import UIKit
 
-class EndOfInstructionsViewController: UIViewController {
+class ReflectionViewController: UIViewController {
     
+    var reflectionActivity: Activity!
+
 }
