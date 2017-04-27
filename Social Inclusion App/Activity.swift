@@ -137,16 +137,28 @@ class Activity {
 // The ActivityCatalog contains a list of all activities available
 // We should determine how to store in a local file once read from a web database
 // Also how to trigger an ActivityCatalog update if there are updates in the web database
-class ActivityCatalog {
+class CompletedActivityCatalog {
     
-    private var allActivities = [Activity]()
+    private var allActivities = [ActivityLogItem]()
+    let activityLogFileURL: URL = {
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory,
+                                     in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("CompletedActivityCatalog.log")
+    }()
     
     init() {
-        readActivities()
+        if let activityLogCatalog =
+            NSKeyedUnarchiver.unarchiveObject(withFile: activityLogFileURL.path) as? [ActivityLogItem] {
+            allActivities += activityLogCatalog
+        }
     }
     
-    func readActivities(){
-        //get the activities from a web database
+    func saveChanges() -> Bool {
+        print("Saving items to: \(activityLogFileURL.path)")
+        return NSKeyedArchiver.archiveRootObject(allActivities, toFile: activityLogFileURL.path)
     }
-    
+
+
 }
