@@ -31,7 +31,7 @@ enum EmotionEmoji {
 struct InstructionTimer {
     
     var instructionCode: String
-    var startTime: Date
+    var startTime: Date?
     var stopTime: Date?
     
     mutating func startInstructionTimer(forInstruction: String) -> InstructionTimer {
@@ -39,11 +39,17 @@ struct InstructionTimer {
         self.startTime = Date()
         return self
     }
-
+    
     mutating func stopInstructionTimer(forInstruction: String) -> InstructionTimer {
         self.instructionCode = forInstruction
         self.stopTime = Date()
         return self
+    }
+    
+    init () {
+        self.instructionCode = ""
+        self.startTime = nil
+        self.stopTime = nil
     }
 }
 
