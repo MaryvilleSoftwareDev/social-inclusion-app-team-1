@@ -72,7 +72,6 @@ class ActivityLogItem: NSObject, NSCoding {
         self.activityCode = ""
         self.instructionCode = ""
         self.participantCode = ""
-
     }
     
     
@@ -98,7 +97,6 @@ class ActivityLogItem: NSObject, NSCoding {
         aCoder.encode(activityCode, forKey: "activityCode")
         aCoder.encode(instructionCode, forKey: "instructionCode")
         aCoder.encode(instructionTimer, forKey: "instructionTimer")
-        
         
     }
     func setEmotionEmoji() -> EmotionEmoji {
