@@ -22,6 +22,7 @@
 		F4640D611EAED97200DC02E2 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */; };
 		F4640D631EAED97900DC02E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D621EAED97900DC02E2 /* LoginViewController.swift */; };
 		F4640D651EB15E9500DC02E2 /* ReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */; };
+		F4640D671EB1796300DC02E2 /* ContinuedReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		F4640D621EAED97900DC02E2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionViewController.swift; sourceTree = "<group>"; };
+		F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuedReflectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				893583C61EA5591900EB9D51 /* AppDelegate.swift */,
 				893583C81EA5591900EB9D51 /* ViewController.swift */,
 				893583CA1EA5591900EB9D51 /* Main.storyboard */,
+				F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */,
 				F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */,
 				4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */,
 				430355171EA5A769007330A9 /* Participant.swift */,
@@ -176,6 +179,7 @@
 				F4640D5F1EAED97200DC02E2 /* ActivityCell.swift in Sources */,
 				4303551A1EA5CC97007330A9 /* Activity.swift in Sources */,
 				F4640D651EB15E9500DC02E2 /* ReflectionViewController.swift in Sources */,
+				F4640D671EB1796300DC02E2 /* ContinuedReflectionViewController.swift in Sources */,
 				F4640D631EAED97900DC02E2 /* LoginViewController.swift in Sources */,
 				430355181EA5A769007330A9 /* Participant.swift in Sources */,
 			);

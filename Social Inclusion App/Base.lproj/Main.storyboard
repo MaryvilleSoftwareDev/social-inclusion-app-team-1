@@ -98,7 +98,7 @@
         <scene sceneID="HV4-JY-Uyc">
             <objects>
                 <collectionViewController id="BeW-MU-wk3" customClass="ActivityCollectionViewController" customModule="Social_Inclusion_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="X9T-b6-5ha">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="X9T-b6-5ha">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,7 +181,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="hqA-U3-Yxx">
-                        <barButtonItem key="backBarButtonItem" title="Instructions" id="sRa-aM-PxF"/>
+                        <barButtonItem key="backBarButtonItem" title="Instructions" id="Wy0-yh-LAH"/>
                         <barButtonItem key="leftBarButtonItem" title="Previous" id="jJB-Ij-LuT">
                             <connections>
                                 <action selector="prevButtonSelected:" destination="9rd-5v-NDi" id="inm-NP-YCM"/>
@@ -231,16 +231,25 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="59" height="78"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                                         <state key="normal" title="☹️"/>
+                                                        <connections>
+                                                            <action selector="negativeEmotionSelected:" destination="Lma-GX-AXv" eventType="touchUpInside" id="efN-5H-Zeq"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg4-yb-p2l">
                                                         <rect key="frame" x="66" y="0.0" width="59" height="78"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                                         <state key="normal" title="😐"/>
+                                                        <connections>
+                                                            <action selector="neutralEmotionSelected:" destination="Lma-GX-AXv" eventType="touchUpInside" id="x8y-9x-thl"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqM-8C-Iqb">
                                                         <rect key="frame" x="132" y="0.0" width="59" height="78"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                                         <state key="normal" title="😀"/>
+                                                        <connections>
+                                                            <action selector="positiveEmotionSelected:" destination="Lma-GX-AXv" eventType="touchUpInside" id="dgd-6N-ih2"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -255,11 +264,80 @@
                             <constraint firstItem="vQo-CO-Q5b" firstAttribute="centerY" secondItem="ljo-qP-sCU" secondAttribute="centerY" id="BIO-v8-5uf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Activity Reflection" id="ag7-wc-K1n"/>
+                    <navigationItem key="navigationItem" title="Activity Reflection" id="ag7-wc-K1n">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="yWu-tX-OUP"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Nw8-9g-8sM" kind="show" identifier="segueToActivityReflectionCont" id="Ls6-zR-6nf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="biz-Fk-0bI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3429.5999999999999" y="151.57421289355324"/>
+        </scene>
+        <!--Activity Reflection-->
+        <scene sceneID="lws-dB-ndN">
+            <objects>
+                <viewController id="Nw8-9g-8sM" customClass="ContinuedReflectionViewController" customModule="Social_Inclusion_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xxi-s2-tX6"/>
+                        <viewControllerLayoutGuide type="bottom" id="nPx-QT-zMR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FnS-gq-xB5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="1on-y2-m6E">
+                                <rect key="frame" x="13" y="265" width="350" height="138"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type a summary of how you felt during the activity below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odb-bB-EbF">
+                                        <rect key="frame" x="45" y="0.0" width="260" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="msc-8W-xZa"/>
+                                            <constraint firstAttribute="height" constant="48" id="vgJ-fe-5h2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reflection here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="diz-9I-3tq">
+                                        <rect key="frame" x="0.0" y="60" width="350" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="77k-ah-PIu"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="reflectionTextFieldEdited:" destination="Nw8-9g-8sM" eventType="editingChanged" id="1iQ-25-8ZW"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlT-eF-KN3">
+                                        <rect key="frame" x="95.5" y="102" width="159" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Submit Reflection"/>
+                                        <connections>
+                                            <action selector="submitReflectionPressed:" destination="Nw8-9g-8sM" eventType="touchUpInside" id="EjI-WQ-2Hd"/>
+                                            <action selector="submitReflectionSelected:" destination="Nw8-9g-8sM" eventType="touchUpInside" id="AcM-Tk-VdJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1on-y2-m6E" firstAttribute="centerY" secondItem="FnS-gq-xB5" secondAttribute="centerY" id="ED1-Sd-aIa"/>
+                            <constraint firstItem="1on-y2-m6E" firstAttribute="centerX" secondItem="FnS-gq-xB5" secondAttribute="centerX" id="cH9-3H-CaZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Activity Reflection" id="Yll-UV-HrT"/>
+                    <connections>
+                        <outlet property="reflectionTextField" destination="diz-9I-3tq" id="795-se-fRP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ayN-zR-Y7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4181.6000000000004" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HLB-NG-HuF">

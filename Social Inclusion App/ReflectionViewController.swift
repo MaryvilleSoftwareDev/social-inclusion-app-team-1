@@ -12,4 +12,19 @@ class ReflectionViewController: UIViewController {
     
     var reflectionActivity: Activity!
 
+    @IBAction func negativeEmotionSelected(_ sender: Any) {
+        performSegue(withIdentifier: "segueToActivityReflectionCont", sender: UIButton.self)
+    }
+    
+    @IBAction func neutralEmotionSelected(_ sender: Any) {
+        performSegue(withIdentifier: "segueToActivityReflectionCont", sender: UIButton.self)
+    }
+   
+    @IBAction func positiveEmotionSelected(_ sender: Any) {
+        performSegue(withIdentifier: "segueToActivityReflectionCont", sender: UIButton.self)
+    }
+    
+    
+    
+    
 }
