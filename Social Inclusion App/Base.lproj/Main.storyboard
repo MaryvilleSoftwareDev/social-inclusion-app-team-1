@@ -193,6 +193,7 @@
                         <outlet property="instructionsTextView" destination="Zrf-B1-wqk" id="w6j-Yc-Fza"/>
                         <outlet property="nextButton" destination="GMz-ks-4Wz" id="CYN-Xz-YuK"/>
                         <outlet property="prevButton" destination="jJB-Ij-LuT" id="BVN-8L-aU9"/>
+                        <segue destination="Lma-GX-AXv" kind="show" identifier="segueToReflection" id="njJ-nG-Oq1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cW4-vC-3sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
