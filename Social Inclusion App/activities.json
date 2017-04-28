@@ -20,7 +20,7 @@
      "details":"If you cannot find an affordable instructor, there are many instrument teaching books for cheap",
 	},
 	{
-	 "title":"Begin performing in front of people you know",
+	 "title":"Begin performing",
      "instructionCode":"LI1-S3",
      "details":"Start with performing in front of those you are closest to before performing to less well-known peers",
 	 "socialSkill":"skill",
@@ -42,26 +42,26 @@
   "instructions":
   [
     {
-	 "title":"Step 1",
+	 "title":"Greet your Server",
      "instructionCode":"ME1-S1",
-     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘waiter’ who will help you with your order – give them a friendly smile and say hello!",
+     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘server’ who will help you with your order – give them a friendly smile and say hello!",
 	 "socialSkill":"greeting",
 	 "socialSkillText":"Do you still remember how to ‘greet’ people you meet for the first time?",
     },
 	{
-	 "title":"Step 2",
+	 "title":"Decide what to order",
      "instructionCode":"ME1-S2",
      "details":"On the table you will find a list of all your favorite foods, this is called a menu – choose which meal you would like to order and tell the waiter your choice. Remember to thank the waiter after they bring your meal.",
 	},
 	{
-	 "title":"Step 3",
+	 "title":"Enjoy your meal",
      "instructionCode":"ME1-S3",
      "details":"Enjoy your lovely meal and when your family or friends are having good conversation at the table make sure to listen well.",
 	 "socialSkill":"listening",
 	 "socialSkillText":"Do you still remember how to ‘listen’ when enjoying good conversation",	
 	},
 	{
-	 "title":"Step 4",
+	 "title":"Pay the bill",
      "instructionCode":"ME1-S4",
      "details":"When you are done, remember to pay for the meal – ask the waiter to bring you the bill or ask how much your meal cost.",
 	}
