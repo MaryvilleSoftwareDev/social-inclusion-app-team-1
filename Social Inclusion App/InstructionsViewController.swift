@@ -24,24 +24,34 @@ class InstructionsViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
     }
-    var instructionActivity: Activity!
     
+    var instructionActivity: Activity!
+    var activityLogItem = ActivityLogItem()
     var selectedInstruction: Int! = 0
     
     override func viewWillAppear(_ animated: Bool) {
+        // Build the activityLogItem
+        var newTimer = InstructionTimer()
+        if activityLogItem.activityCode == "" {
+            activityLogItem.activityCode = instructionActivity.activityCode
+            activityLogItem.participantCode = "code"
+            activityLogItem.instructionTimer = [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
+        } else {
+            activityLogItem.instructionTimer += [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
+        }
         
+        // Set button state
         finishButton.isEnabled = false
         finishButton.isHidden = true
         
+        // Set text values for the current instruction
         instructionsNavigationController.title = instructionActivity.name
-        
         instructionStepTitle.text = instructionActivity.instructions[selectedInstruction].title
         socialSkillTextView.text = instructionActivity.instructions[selectedInstruction].socialSkillText
-        
         instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
         
+        // Change the button state if last instruction is displayed
         if selectedInstruction + 1 == instructionActivity.instructions.count {
-            // nextButton.title("Finish", for: .normal)
             nextButton.isEnabled = false
             finishButton.isHidden = false
             finishButton.isEnabled = true
@@ -60,16 +70,16 @@ class InstructionsViewController: UIViewController {
             let selectedActivity = instructionActivity
             let reflectionViewController = nextViewController 
             
-            reflectionViewController.reflectionActivity = selectedActivity
+            reflectionViewController.reflectionActivity = activityLogItem
             
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
-            
+            activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
             nextViewController.selectedInstruction = selectedInstruction + 1
             nextViewController.instructionActivity = instructionActivity
+            nextViewController.activityLogItem = activityLogItem
            
-            
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
 }

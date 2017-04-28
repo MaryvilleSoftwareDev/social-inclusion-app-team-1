@@ -9,6 +9,8 @@
 import UIKit
 
 class ContinuedReflectionViewController: UIViewController {
+    
+    
     @IBOutlet weak var reflectionTextField: UITextField!
     
     @IBAction func reflectionTextFieldEdited(_ sender: Any) {

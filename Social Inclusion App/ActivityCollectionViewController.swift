@@ -18,6 +18,7 @@ class ActivityCollectionViewController: UICollectionViewController {
     
     var jsonActivities:[Activity] = [Activity]()
     
+    
 /*    let activities = [Activity(name: "Learn Instrument", activityCode: "AC1", description: "You will play an instrument", icon: #imageLiteral(resourceName: "grand-piano"), category: "example skill", instructions: instrumentInstructions), Activity(name: "Get Coffee", activityCode: "AC2", description: "You will go out and get some coffee", icon: #imageLiteral(resourceName: "coffee"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Walk Dog", activityCode: "AC3", description: "You will walk your dog", icon: #imageLiteral(resourceName: "dog walk"), category: "example skill", instructions: placeHolderInstructions), Activity(name: "Go To Chruch", activityCode: "AC4", description: "You will go to church", icon: #imageLiteral(resourceName: "church"), category: "example skill", instructions: placeHolderInstructions)]
  */
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

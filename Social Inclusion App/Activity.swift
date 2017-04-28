@@ -139,7 +139,7 @@ class Activity {
 // Also how to trigger an ActivityCatalog update if there are updates in the web database
 class CompletedActivityCatalog {
     
-    private var allActivities = [ActivityLogItem]()
+    var allActivities = [ActivityLogItem]()
     let activityLogFileURL: URL = {
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory,

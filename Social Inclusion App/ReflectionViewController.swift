@@ -10,7 +10,8 @@ import UIKit
 
 class ReflectionViewController: UIViewController {
     
-    var reflectionActivity: Activity!
+    var reflectionActivity: ActivityLogItem!
+    
 
     @IBAction func negativeEmotionSelected(_ sender: Any) {
         performSegue(withIdentifier: "segueToActivityReflectionCont", sender: UIButton.self)
@@ -24,7 +25,18 @@ class ReflectionViewController: UIViewController {
         performSegue(withIdentifier: "segueToActivityReflectionCont", sender: UIButton.self)
     }
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let completedActivityCatalog = CompletedActivityCatalog()
+        completedActivityCatalog.allActivities.append(reflectionActivity)
+        let success = completedActivityCatalog.saveChanges()
+        if success {
+            print("Saved!")
+        } else {
+            print("Failed!")
+        }
+            
+        
+    }
     
 }
