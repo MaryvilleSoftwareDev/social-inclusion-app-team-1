@@ -13,9 +13,10 @@ class InstructionsViewController: UIViewController {
     
     @IBOutlet weak var instructionsTextView: UITextView!
     
+    @IBOutlet var socialSkillTextView: UITextView!
     @IBOutlet var instructionStepTitle: UITextField!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet var socialSkillTextField: UITextField!
+    
     
     @IBOutlet weak var prevButton: UIBarButtonItem!
     
@@ -28,7 +29,7 @@ class InstructionsViewController: UIViewController {
         instructionsNavigationController.title = instructionActivity.name
         
         instructionStepTitle.text = instructionActivity.instructions[selectedInstruction].title
-        socialSkillTextField.text = instructionActivity.instructions[selectedInstruction].socialSkillText
+        socialSkillTextView.text = instructionActivity.instructions[selectedInstruction].socialSkillText
         
         instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
         

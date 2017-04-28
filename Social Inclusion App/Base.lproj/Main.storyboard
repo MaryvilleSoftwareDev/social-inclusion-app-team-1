@@ -162,12 +162,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="instructionsTextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zrf-B1-wqk">
-                                <rect key="frame" x="24" y="104" width="343" height="342"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lJP-p8-U6r">
+                                <rect key="frame" x="16" y="72" width="343" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="lwb-tM-uoM"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMz-ks-4Wz">
                                 <rect key="frame" x="153" y="571" width="68" height="38"/>
                                 <constraints>
@@ -179,38 +182,38 @@
                                     <action selector="nextButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="P49-AW-6b9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lJP-p8-U6r">
-                                <rect key="frame" x="112" y="72" width="124" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="124" id="lwb-tM-uoM"/>
-                                </constraints>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iE7-3n-n0S">
-                                <rect key="frame" x="124" y="462" width="97" height="93"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="93" id="7f5-cg-SJA"/>
-                                    <constraint firstAttribute="width" constant="97" id="C6q-Vz-7Th"/>
-                                </constraints>
-                                <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="BcK-SG-FKr">
+                                <rect key="frame" x="16" y="106" width="343" height="366"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zrf-B1-wqk">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="222"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-lc-rPB">
+                                        <rect key="frame" x="0.0" y="238" width="343" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="EUv-zg-3Ck"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vSP-UT-FHc" firstAttribute="top" secondItem="GMz-ks-4Wz" secondAttribute="bottom" constant="58" id="3I0-5l-bmb"/>
-                            <constraint firstItem="iE7-3n-n0S" firstAttribute="trailing" secondItem="GMz-ks-4Wz" secondAttribute="trailing" id="3JU-wR-5Da"/>
-                            <constraint firstItem="GMz-ks-4Wz" firstAttribute="top" secondItem="iE7-3n-n0S" secondAttribute="bottom" constant="16" id="Jjl-ZV-S49"/>
-                            <constraint firstItem="lJP-p8-U6r" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" constant="96" id="MmZ-si-YC9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zrf-B1-wqk" secondAttribute="trailing" constant="-8" id="T2x-sz-wOV"/>
-                            <constraint firstItem="iE7-3n-n0S" firstAttribute="top" secondItem="Zrf-B1-wqk" secondAttribute="bottom" constant="16" id="axs-c8-dhF"/>
+                            <constraint firstItem="BcK-SG-FKr" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" id="9g6-Jw-chJ"/>
+                            <constraint firstItem="lJP-p8-U6r" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" id="MmZ-si-YC9"/>
+                            <constraint firstAttribute="bottom" secondItem="BcK-SG-FKr" secondAttribute="bottom" constant="195" id="TLo-44-7TQ"/>
                             <constraint firstItem="GMz-ks-4Wz" firstAttribute="centerX" secondItem="JJ4-RG-e8d" secondAttribute="centerX" id="bcf-GA-u3v"/>
-                            <constraint firstItem="Zrf-B1-wqk" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" constant="8" id="bjR-mO-oVl"/>
-                            <constraint firstItem="Zrf-B1-wqk" firstAttribute="top" secondItem="lJP-p8-U6r" secondAttribute="bottom" constant="8" symbolic="YES" id="fxe-pO-s5c"/>
+                            <constraint firstItem="BcK-SG-FKr" firstAttribute="top" secondItem="lJP-p8-U6r" secondAttribute="bottom" constant="10" id="jWx-9g-WbR"/>
                             <constraint firstItem="lJP-p8-U6r" firstAttribute="top" secondItem="Fo6-ck-dkn" secondAttribute="bottom" constant="8" symbolic="YES" id="lrE-zZ-N9I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BcK-SG-FKr" secondAttribute="trailing" id="vW2-AJ-QaN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="hqA-U3-Yxx">
@@ -227,7 +230,7 @@
                         <outlet property="instructionsTextView" destination="Zrf-B1-wqk" id="w6j-Yc-Fza"/>
                         <outlet property="nextButton" destination="GMz-ks-4Wz" id="CYN-Xz-YuK"/>
                         <outlet property="prevButton" destination="jJB-Ij-LuT" id="BVN-8L-aU9"/>
-                        <outlet property="socialSkillTextField" destination="iE7-3n-n0S" id="Tui-KL-lZF"/>
+                        <outlet property="socialSkillTextView" destination="gH3-lc-rPB" id="CpA-GF-6VL"/>
                         <segue destination="Lma-GX-AXv" kind="show" identifier="segueToReflection" id="njJ-nG-Oq1"/>
                     </connections>
                 </viewController>
