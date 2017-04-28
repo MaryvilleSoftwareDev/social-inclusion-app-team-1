@@ -67,8 +67,9 @@ class InstructionsViewController: UIViewController {
             
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
             
-            let selectedActivity = instructionActivity
-            let reflectionViewController = nextViewController 
+            // let selectedActivity = instructionActivity
+            let reflectionViewController = nextViewController
+            activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
             
             reflectionViewController.reflectionActivity = activityLogItem
             
@@ -84,6 +85,7 @@ class InstructionsViewController: UIViewController {
         }
 }
     @IBAction func prevButtonSelected(_ sender: Any) {
+        activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
         self.navigationController?.popViewController(animated: true)
     }
     
