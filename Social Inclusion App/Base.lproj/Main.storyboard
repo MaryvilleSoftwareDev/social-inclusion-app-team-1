@@ -192,14 +192,26 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXc-tG-f4u">
+                                <rect key="frame" x="150" y="497" width="74" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finishButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="GJn-b3-r5X"/>
+                                    <action selector="nextButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="pfe-sX-49M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BcK-SG-FKr" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" id="9g6-Jw-chJ"/>
+                            <constraint firstItem="GXc-tG-f4u" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" constant="134" id="BjN-hG-jSa"/>
+                            <constraint firstItem="GXc-tG-f4u" firstAttribute="top" secondItem="BcK-SG-FKr" secondAttribute="bottom" constant="25" id="Hbo-iF-2ru"/>
                             <constraint firstItem="lJP-p8-U6r" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" id="MmZ-si-YC9"/>
                             <constraint firstAttribute="bottom" secondItem="BcK-SG-FKr" secondAttribute="bottom" constant="195" id="TLo-44-7TQ"/>
                             <constraint firstItem="BcK-SG-FKr" firstAttribute="top" secondItem="lJP-p8-U6r" secondAttribute="bottom" constant="10" id="jWx-9g-WbR"/>
                             <constraint firstItem="lJP-p8-U6r" firstAttribute="top" secondItem="Fo6-ck-dkn" secondAttribute="bottom" constant="8" symbolic="YES" id="lrE-zZ-N9I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GXc-tG-f4u" secondAttribute="trailing" constant="135" id="qHj-fN-47g"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BcK-SG-FKr" secondAttribute="trailing" id="vW2-AJ-QaN"/>
                         </constraints>
                     </view>
@@ -217,9 +229,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="finishButton" destination="GXc-tG-f4u" id="sA9-GK-jLi"/>
                         <outlet property="instructionStepTitle" destination="lJP-p8-U6r" id="19E-2h-knu"/>
                         <outlet property="instructionsNavigationController" destination="hqA-U3-Yxx" id="TF6-Fu-FZf"/>
                         <outlet property="instructionsTextView" destination="Zrf-B1-wqk" id="w6j-Yc-Fza"/>
+                        <outlet property="nextButton" destination="YZh-5D-etB" id="tLc-rZ-y5y"/>
                         <outlet property="prevButton" destination="jJB-Ij-LuT" id="BVN-8L-aU9"/>
                         <outlet property="socialSkillTextView" destination="gH3-lc-rPB" id="CpA-GF-6VL"/>
                         <segue destination="Lma-GX-AXv" kind="show" identifier="segueToReflection" id="njJ-nG-Oq1"/>

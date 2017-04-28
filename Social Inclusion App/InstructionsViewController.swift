@@ -15,16 +15,23 @@ class InstructionsViewController: UIViewController {
     
     @IBOutlet var socialSkillTextView: UITextView!
     @IBOutlet var instructionStepTitle: UITextField!
-    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet var nextButton: UIBarButtonItem!
+    @IBOutlet var finishButton: UIButton!
     
     
     @IBOutlet weak var prevButton: UIBarButtonItem!
     
+    @IBAction func finishButtonPressed(_ sender: UIButton) {
+    }
     var instructionActivity: Activity!
     
     var selectedInstruction: Int! = 0
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        finishButton.isEnabled = false
+        finishButton.isHidden = true
         
         instructionsNavigationController.title = instructionActivity.name
         
@@ -34,7 +41,10 @@ class InstructionsViewController: UIViewController {
         instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
         
         if selectedInstruction + 1 == instructionActivity.instructions.count {
-            nextButton.setTitle("Finish", for: .normal)
+            // nextButton.title("Finish", for: .normal)
+            nextButton.isEnabled = false
+            finishButton.isHidden = false
+            finishButton.isEnabled = true
         }
         
         if selectedInstruction == 0 {
