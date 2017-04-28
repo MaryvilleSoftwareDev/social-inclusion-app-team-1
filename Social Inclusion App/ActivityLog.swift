@@ -83,6 +83,8 @@ class ActivityLogItem: NSObject, NSCoding {
         participantCode = aDecoder.decodeObject(forKey: "participantCode") as! String
         activityCode = aDecoder.decodeObject(forKey: "activityCode") as! String
         // instructionCode = aDecoder.decodeObject(forKey: "instructionCode") as! String
+        //
+        
         instructionTimer = [aDecoder.decodeObject(forKey: "instructionTimer") as! InstructionTimer]
         
         super.init()
@@ -97,6 +99,7 @@ class ActivityLogItem: NSObject, NSCoding {
         aCoder.encode(activityCode, forKey: "activityCode")
         // aCoder.encode(instructionCode, forKey: "instructionCode")
         aCoder.encode(instructionTimer, forKey: "instructionTimer")
+        
         
     }
     
