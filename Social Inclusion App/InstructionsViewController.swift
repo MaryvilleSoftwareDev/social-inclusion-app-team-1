@@ -33,9 +33,7 @@ class InstructionsViewController: UIViewController {
         // Build the activityLogItem
         var newTimer = InstructionTimer()
         if activityLogItem.activityCode == "" {
-            activityLogItem.activityCode = instructionActivity.activityCode
-            activityLogItem.participantCode = "code"
-            activityLogItem.instructionTimer = [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
+            activityLogItem.addSelectedActivity(forActivity: instructionActivity, withInstructionTimerArray: newTimer)
         } else {
             activityLogItem.instructionTimer += [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
         }
