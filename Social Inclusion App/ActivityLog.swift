@@ -94,5 +94,10 @@ class ActivityLogItem: NSObject, NSCoding {
         return .neutral
     }
     
+    func addSelectedActivity(toLog: ActivityLogItem, withInstructionTimerArray: InstructionTimer) {
+        self.activityCode = toLog.activityCode
+        self.participantCode = "code"
+        self.instructionTimer = [withInstructionTimerArray]
+    }
     
 }
