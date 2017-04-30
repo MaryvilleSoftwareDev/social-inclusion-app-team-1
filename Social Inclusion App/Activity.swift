@@ -52,14 +52,6 @@ struct Instructions {
         }
         
     }
-    
-    /*
-     need a start timer function
-     need a stop timer function, record start time in the timer value then calculate on stopping it
-     */
-    
-    
-    // once read in as part of the readActivities function the data is static as the app runs
 }
 
 // The SocialSkills type is used to create and array of SocialSkills in the Activity class
