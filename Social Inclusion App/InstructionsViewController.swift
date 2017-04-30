@@ -91,5 +91,4 @@ class InstructionsViewController: UIViewController {
         activityLogItem.instructionTimer[activityLogItem.instructionTimer.count - 1].stopTime = Date()
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
