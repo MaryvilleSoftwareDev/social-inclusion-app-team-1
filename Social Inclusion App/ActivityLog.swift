@@ -100,7 +100,7 @@ class ActivityLogItem: NSObject, NSCoding {
         self.participantCode = "code"
         self.instructionTimer = [withInstructionTimerArray]
         self.instructionTimer[0].startTime = Date()
-        // self.instructionTimer[0].instructionCode = toLog.instructions[0].instructionCode
+        self.instructionTimer[0].instructionCode = forActivity.instructions[0].instructionCode
     }
     
 }
