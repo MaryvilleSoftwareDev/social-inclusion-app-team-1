@@ -132,6 +132,7 @@ class Activity {
 class CompletedActivityCatalog {
     
     var allActivities = [ActivityLogItem]()
+    
     let activityLogFileURL: URL = {
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory,
@@ -146,11 +147,9 @@ class CompletedActivityCatalog {
             allActivities += activityLogCatalog
         }
     }
-    
+
     func saveChanges() -> Bool {
         print("Saving items to: \(activityLogFileURL.path)")
         return NSKeyedArchiver.archiveRootObject(allActivities, toFile: activityLogFileURL.path)
     }
-
-
 }
