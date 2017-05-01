@@ -29,8 +29,8 @@ class InstructionsViewController: UIViewController {
     var completedActivityLog: CompletedActivityLog!
     var selectedInstruction: Int! = 0
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         // Build the activityLogItem
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         var newTimer = InstructionTimer()
