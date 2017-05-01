@@ -59,6 +59,10 @@ class InstructionsViewController: UIViewController {
             prevButton.title = "Activities"
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        // stop timer here?
+    }
 
     @IBAction func nextButtonPressed(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1

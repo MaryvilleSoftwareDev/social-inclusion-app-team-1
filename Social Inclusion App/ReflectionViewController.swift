@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ReflectionViewController: UIViewController, UITextViewDelegate {
+import AVFoundation
+
+
+
+
+class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate  {
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var submitReflectionButton: UIButton!
     @IBOutlet weak var negativeEmotion: UIButton!
@@ -16,6 +21,13 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var positiveEmotion: UIButton!
     
     var completedActivityLog: CompletedActivityLog!
+    
+//    var recordButton: UIButton!
+//    var recordingSession: AVAudioSession!
+//    var audioRecorder: AVAudioRecorder!
+    
+    var reflectionActivity: ActivityLogItem!
+>>>>>>> ra-master
     
     @IBAction func negativeEmotionSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
@@ -57,6 +69,28 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         summaryTextView.delegate = self
 
     }
+=======
+        //sound addition here//
+        
+//        recordingSession = AVAudioSession.sharedInstance()
+//        
+//        do {
+//            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+//            try recordingSession.setActive(true)
+//            recordingSession.requestRecordPermission() { [unowned self] allowed in
+//                DispatchQueue.main.async {
+//                    if allowed {
+//                        self.loadRecordingUI()
+//                    } else {
+//                        // failed to record!
+//                    }
+//                }
+//            }
+//        } catch {
+//            // failed to record!
+//        }
+//    }
+>>>>>>> ra-master
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if summaryTextView.textColor == UIColor.lightGray {
@@ -71,6 +105,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+<<<<<<< HEAD
     @IBAction func submiteReflectionButtonPressed(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].recording = summaryTextView.text
@@ -82,4 +117,6 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         //}
         //still have to make it so that this relfectionActivity is logged onto the server
     }
+}
+>>>>>>> ra-master
 }

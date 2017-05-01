@@ -155,11 +155,9 @@ class CompletedActivityLog {
             allCompletedActivities = [createLogEntry()]
         }
     }
-    
+
     func saveChanges() -> Bool {
         print("Saving items to: \(activityLogFileURL.path)")
         return NSKeyedArchiver.archiveRootObject(allCompletedActivities, toFile: activityLogFileURL.path)
     }
-
-
 }
