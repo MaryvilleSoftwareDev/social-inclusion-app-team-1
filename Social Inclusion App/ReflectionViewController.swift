@@ -20,35 +20,29 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
     @IBAction func negativeEmotionSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].reaction = .negative
-        
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        
     
     }
     
     @IBAction func neutralEmotionSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].reaction = .neutral
-
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        
- 
     }
    
     @IBAction func positiveEmotionSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].reaction = .positive
-        
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-        
-       
-
     }
     
     override func viewDidLoad() {
@@ -61,8 +55,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         summaryTextView.layer.borderColor = UIColor.black.cgColor
         
         summaryTextView.delegate = self
-        
-    
+
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

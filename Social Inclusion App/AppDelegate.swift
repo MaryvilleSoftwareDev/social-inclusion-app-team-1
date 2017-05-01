@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginController = navController.topViewController as! LoginViewController
         loginController.completedActivityLog = completedActivityLog
         
-        // Override point for customization after application launch.
         return true
     }
 

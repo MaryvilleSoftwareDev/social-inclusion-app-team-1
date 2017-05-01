@@ -10,18 +10,13 @@ import UIKit
 
 class InstructionsViewController: UIViewController {
     @IBOutlet weak var instructionsNavigationController: UINavigationItem!
-    
     @IBOutlet weak var instructionsTextView: UITextView!
-    
     @IBOutlet var socialSkillTextView: UITextView!
     @IBOutlet var instructionStepTitle: UITextField!
-    
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var finishButton: UIButton!
-    
-    
     @IBOutlet weak var prevButton: UIBarButtonItem!
-    
+
     @IBAction func finishButtonPressed(_ sender: UIButton) {
     }
     
@@ -34,6 +29,7 @@ class InstructionsViewController: UIViewController {
         // Build the activityLogItem
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         var newTimer = InstructionTimer()
+        // This was a method in the activity class till we lost the code when merging, need to chnge it back
         if completedActivityLog.allCompletedActivities[thisLogItem].activityCode == "" {
             completedActivityLog.allCompletedActivities[thisLogItem].activityCode = instructionActivity.activityCode
             // activityLogItem.participantCode = "code"
@@ -68,12 +64,9 @@ class InstructionsViewController: UIViewController {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
         if selectedInstruction + 1 == instructionActivity.instructions.count {
-            
             let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
-            
             reflectionViewController.completedActivityLog = self.completedActivityLog
-            
             self.navigationController?.pushViewController(reflectionViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
@@ -81,7 +74,6 @@ class InstructionsViewController: UIViewController {
             nextViewController.selectedInstruction = selectedInstruction + 1
             nextViewController.instructionActivity = instructionActivity
             nextViewController.completedActivityLog = completedActivityLog
-           
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
 }

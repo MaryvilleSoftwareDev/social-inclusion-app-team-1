@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadDateAndTime()
-        // adding comment
     }
     
     func loadDateAndTime() {
@@ -28,14 +27,12 @@ class LoginViewController: UIViewController {
         let d_format = DateFormatter()
         d_format.dateFormat = "dd/MM/yyyy"
         dateLabel.text = d_format.string(from: today)
-        
         timeLabel.text = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.none
             , timeStyle: DateFormatter.Style.short)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         codeTextField.text = nil
-        
         if codeTextField.text == nil {
             loginButton.isEnabled = false
         }
@@ -46,9 +43,8 @@ class LoginViewController: UIViewController {
         loadDateAndTime()
     }
     
-
     @IBAction func logInButtonPressed(_ sender: Any) {
-        
+        // looping only works if the first participant code is selected, need to re-think this logic
         for participant in listOfParticipants {
             if participant
                 .code == codeTextField.text {
@@ -68,6 +64,4 @@ class LoginViewController: UIViewController {
         activityCollectionViewController.completedActivityLog = self.completedActivityLog
         activityCollectionViewController.participantCode = codeTextField.text!
     }
-
-    
 }
