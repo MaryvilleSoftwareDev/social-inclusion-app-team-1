@@ -13,6 +13,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    var activityLogItem = ActivityLogItem()
+    
+    let listOfParticipants = [Participant(name: " ", email: nil, code: "000000"), Participant(name: " ", email: nil, code: "000001"), Participant(name: " ", email: nil, code: "000002")]
     
     override func viewDidLoad() {
         self.loadDateAndTime()
@@ -35,10 +38,33 @@ class LoginViewController: UIViewController {
         if codeTextField.text == nil {
             loginButton.isEnabled = false
         }
+        codeTextField.placeholder = "code"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadDateAndTime()
     }
-
+    
+    @IBAction func logInButtonPressed(_ sender: Any) {
+        for participant in listOfParticipants {
+            if participant
+                .code == codeTextField.text {
+                activityLogItem.participantCode = codeTextField.text!
+                
+                codeTextField.text = nil
+                
+                func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                    let activityCollectionViewController = segue.destination as? ActivityCollectionViewController
+                    
+                    activityCollectionViewController?.activityLogItem = self.activityLogItem
+                }
+                
+                performSegue(withIdentifier: "segueToActivities", sender: UIButton.self)
+            } else {
+                codeTextField.text = nil
+                codeTextField.placeholder = "Please try again"
+            }
+        }
+    }
+    
 }

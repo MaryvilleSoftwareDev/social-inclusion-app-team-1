@@ -26,7 +26,7 @@ class InstructionsViewController: UIViewController {
     }
     
     var instructionActivity: Activity!
-    var activityLogItem = ActivityLogItem()
+    var activityLogItem: ActivityLogItem!
     var selectedInstruction: Int! = 0
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,15 +65,15 @@ class InstructionsViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: Any) {
         if selectedInstruction + 1 == instructionActivity.instructions.count {
             
-            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+            let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
             
-            // let selectedActivity = instructionActivity
-            let reflectionViewController = nextViewController
+            let selectedActivity = instructionActivity
+            
             activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
             
-            reflectionViewController.reflectionActivity = activityLogItem
+            reflectionViewController.activityLogItem = self.activityLogItem
             
-            self.navigationController?.pushViewController(nextViewController, animated: true)
+            self.navigationController?.pushViewController(reflectionViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
             activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()

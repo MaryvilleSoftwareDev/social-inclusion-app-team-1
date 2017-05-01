@@ -15,35 +15,41 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var neutralEmotion: UIButton!
     @IBOutlet weak var positiveEmotion: UIButton!
     
-    var reflectionActivity: ActivityLogItem!
+    var activityLogItem: ActivityLogItem!
     
     @IBAction func negativeEmotionSelected(_ sender: Any) {
         
-        reflectionActivity.reaction = .negative
+        activityLogItem.reaction = .negative
         
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
+        
+        label3.text = activityLogItem.reaction.display
     
     }
     
     @IBAction func neutralEmotionSelected(_ sender: Any) {
         
-        reflectionActivity.reaction = .neutral
+        activityLogItem.reaction = .neutral
 
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
+        
+        label3.text = activityLogItem.reaction.display
 
     }
    
     @IBAction func positiveEmotionSelected(_ sender: Any) {
         
-        reflectionActivity.reaction = .positive
+        activityLogItem.reaction = .positive
         
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
+        
+        label3.text = activityLogItem.reaction.display
 
     }
     
@@ -57,6 +63,12 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         summaryTextView.layer.borderColor = UIColor.black.cgColor
         
         summaryTextView.delegate = self
+        
+        
+        
+        
+        label1.text = String(describing: activityLogItem.dateCompleted)
+        label2.text = activityLogItem.participantCode
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -73,8 +85,19 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submiteReflectionButtonPressed(_ sender: Any) {
-        reflectionActivity.recording = summaryTextView.text
-        reflectionActivity.dateCompleted = Date()
+        activityLogItem.recording = summaryTextView.text
+        activityLogItem.dateCompleted = Date()
         //still have to make it so that this relfectionActivity is logged onto the server
     }
+    
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var label4: UILabel!
+    
+    
+    
+    
+    
+    
 }
