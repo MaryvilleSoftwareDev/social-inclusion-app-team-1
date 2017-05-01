@@ -193,10 +193,6 @@
                                     <action selector="nextButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="pfe-sX-49M"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CHV-dg-boe">
-                                <rect key="frame" x="112" y="613" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
