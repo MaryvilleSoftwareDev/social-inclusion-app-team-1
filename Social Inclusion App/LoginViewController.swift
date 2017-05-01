@@ -13,11 +13,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    var activityLogItem = ActivityLogItem()
+    var completedActivityLog: CompletedActivityLog!
     
     let listOfParticipants = [Participant(name: " ", email: nil, code: "000000"), Participant(name: " ", email: nil, code: "000001"), Participant(name: " ", email: nil, code: "000002")]
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.loadDateAndTime()
         // adding comment
     }
@@ -45,20 +46,15 @@ class LoginViewController: UIViewController {
         loadDateAndTime()
     }
     
+
     @IBAction func logInButtonPressed(_ sender: Any) {
+        
         for participant in listOfParticipants {
             if participant
                 .code == codeTextField.text {
-                activityLogItem.participantCode = codeTextField.text!
-                
+                let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+                completedActivityLog.allCompletedActivities[thisLogItem].participantCode = codeTextField.text!
                 codeTextField.text = nil
-                
-                func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                    let activityCollectionViewController = segue.destination as? ActivityCollectionViewController
-                    
-                    activityCollectionViewController?.activityLogItem = self.activityLogItem
-                }
-                
                 performSegue(withIdentifier: "segueToActivities", sender: UIButton.self)
             } else {
                 codeTextField.text = nil
@@ -66,5 +62,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let activityCollectionViewController = segue.destination as! ActivityCollectionViewController
+        activityCollectionViewController.completedActivityLog = self.completedActivityLog
+        activityCollectionViewController.participantCode = codeTextField.text!
+    }
+
     
 }

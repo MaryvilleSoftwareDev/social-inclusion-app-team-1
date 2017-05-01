@@ -26,18 +26,20 @@ class InstructionsViewController: UIViewController {
     }
     
     var instructionActivity: Activity!
-    var activityLogItem: ActivityLogItem!
+    var completedActivityLog: CompletedActivityLog!
     var selectedInstruction: Int! = 0
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         // Build the activityLogItem
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         var newTimer = InstructionTimer()
-        if activityLogItem.activityCode == "" {
-            activityLogItem.activityCode = instructionActivity.activityCode
-            activityLogItem.participantCode = "code"
-            activityLogItem.instructionTimer = [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
+        if completedActivityLog.allCompletedActivities[thisLogItem].activityCode == "" {
+            completedActivityLog.allCompletedActivities[thisLogItem].activityCode = instructionActivity.activityCode
+            // activityLogItem.participantCode = "code"
+            completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer = [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
         } else {
-            activityLogItem.instructionTimer += [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
+            completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer += [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
         }
         
         // Set button state
@@ -63,29 +65,30 @@ class InstructionsViewController: UIViewController {
     }
 
     @IBAction func nextButtonPressed(_ sender: Any) {
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
         if selectedInstruction + 1 == instructionActivity.instructions.count {
             
             let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+            completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
             
-            let selectedActivity = instructionActivity
-            
-            activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
-            
-            reflectionViewController.activityLogItem = self.activityLogItem
+            reflectionViewController.completedActivityLog = self.completedActivityLog
             
             self.navigationController?.pushViewController(reflectionViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
-            activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
+            completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
             nextViewController.selectedInstruction = selectedInstruction + 1
             nextViewController.instructionActivity = instructionActivity
-            nextViewController.activityLogItem = activityLogItem
+            nextViewController.completedActivityLog = completedActivityLog
            
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
 }
     @IBAction func prevButtonSelected(_ sender: Any) {
-        activityLogItem.instructionTimer[selectedInstruction].stopTime = Date()
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
         self.navigationController?.popViewController(animated: true)
     }
 }

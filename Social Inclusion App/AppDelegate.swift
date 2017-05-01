@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Creating a CompletedActivityLog
+        let completedActivityLog = CompletedActivityLog()
+        let navController = window!.rootViewController as! UINavigationController
+        let loginController = navController.topViewController as! LoginViewController
+        loginController.completedActivityLog = completedActivityLog
+        
         // Override point for customization after application launch.
         return true
     }

@@ -10,7 +10,8 @@ import UIKit
 
 class ActivityCollectionViewController: UICollectionViewController {
     
-    var activityLogItem: ActivityLogItem!
+    var completedActivityLog: CompletedActivityLog!
+    var participantCode: String!
     
     // Cread an array of activities bt reading activities.json
     var jsonActivities:[Activity] = [Activity]()
@@ -39,7 +40,7 @@ class ActivityCollectionViewController: UICollectionViewController {
             
             instructionsViewController.instructionActivity = selectedActivity
             
-            instructionsViewController.activityLogItem = self.activityLogItem
+            instructionsViewController.completedActivityLog = completedActivityLog
         }
     }
     
