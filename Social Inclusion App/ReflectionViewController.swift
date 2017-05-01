@@ -75,9 +75,10 @@ class ReflectionViewController: UIViewController, UITextViewDelegate {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].recording = summaryTextView.text
         completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
+        
         //let success = completedActivityLog.saveChanges()
         //if success {
-        //    print("Saved all of the items")
+            print("Saved all of the items")
         //}
         //still have to make it so that this relfectionActivity is logged onto the server
     }

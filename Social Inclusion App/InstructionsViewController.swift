@@ -29,10 +29,10 @@ class InstructionsViewController: UIViewController {
         // Build the activityLogItem
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         var newTimer = InstructionTimer()
-        // This was a method in the activity class till we lost the code when merging, need to chnge it back
+        
         if completedActivityLog.allCompletedActivities[thisLogItem].activityCode == "" {
             completedActivityLog.allCompletedActivities[thisLogItem].activityCode = instructionActivity.activityCode
-            // activityLogItem.participantCode = "code"
+            
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer = [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
         } else {
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer += [newTimer.startInstructionTimer(forInstruction: instructionActivity.instructions[selectedInstruction].instructionCode)]
