@@ -105,7 +105,6 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
     }
     
-<<<<<<< HEAD
     @IBAction func submiteReflectionButtonPressed(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].recording = summaryTextView.text

@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
         loadDateAndTime()
     }
     
-    @IBAction func logInButtonPressed(_ sender: Any) {
+    @IBAction func loginButtonPressed(_ sender: Any) {
         // looping only works if the first participant code is selected, need to re-think this logic
         for participant in listOfParticipants {
             if participant
