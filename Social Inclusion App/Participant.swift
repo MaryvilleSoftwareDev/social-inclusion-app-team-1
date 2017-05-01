@@ -12,6 +12,6 @@ import UIKit
 
 struct Participant {
     var name: String
-    var email: String
+    var email: String?
     var code: String
 }

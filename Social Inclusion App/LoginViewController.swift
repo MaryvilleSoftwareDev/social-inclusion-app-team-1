@@ -13,10 +13,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    var completedActivityLog: CompletedActivityLog!
+    
+    let listOfParticipants = [Participant(name: " ", email: nil, code: "000000"), Participant(name: " ", email: nil, code: "000001"), Participant(name: " ", email: nil, code: "000002")]
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.loadDateAndTime()
-        // adding comment
     }
     
     func loadDateAndTime() {
@@ -24,21 +27,41 @@ class LoginViewController: UIViewController {
         let d_format = DateFormatter()
         d_format.dateFormat = "dd/MM/yyyy"
         dateLabel.text = d_format.string(from: today)
-        
         timeLabel.text = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.none
             , timeStyle: DateFormatter.Style.short)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         codeTextField.text = nil
-        
         if codeTextField.text == nil {
             loginButton.isEnabled = false
         }
+        codeTextField.placeholder = "code"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadDateAndTime()
     }
-
+    
+    @IBAction func logInButtonPressed(_ sender: Any) {
+        // looping only works if the first participant code is selected, need to re-think this logic
+        for participant in listOfParticipants {
+            if participant
+                .code == codeTextField.text {
+                let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+                completedActivityLog.allCompletedActivities[thisLogItem].participantCode = codeTextField.text!
+                codeTextField.text = nil
+                performSegue(withIdentifier: "segueToActivities", sender: UIButton.self)
+            } else {
+                codeTextField.text = nil
+                codeTextField.placeholder = "Please try again"
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let activityCollectionViewController = segue.destination as! ActivityCollectionViewController
+        activityCollectionViewController.completedActivityLog = self.completedActivityLog
+        activityCollectionViewController.participantCode = codeTextField.text!
+    }
 }

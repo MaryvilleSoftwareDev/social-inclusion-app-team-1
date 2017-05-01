@@ -94,5 +94,11 @@ class ActivityLogItem: NSObject, NSCoding {
         return .neutral
     }
     
+    // This method has not yet been implemented
+    func updateFor(selectedActivity: Activity) {
+        self.activityCode = selectedActivity.activityCode
+        self.instructionTimer = [InstructionTimer()]
+    }
+    
     
 }

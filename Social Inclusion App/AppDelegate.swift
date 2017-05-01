@@ -26,9 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-
-        // Override point for customization after application launch.
+        // Creating a CompletedActivityLog
+        let completedActivityLog = CompletedActivityLog()
+        let navController = window!.rootViewController as! UINavigationController
+        let loginController = navController.topViewController as! LoginViewController
+        loginController.completedActivityLog = completedActivityLog
+        
         return true
     }
 

@@ -13,7 +13,6 @@
 		4303551E1EA5CF8A007330A9 /* AudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */; };
 		430755BA1EB0128100A855AD /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = 430755B91EB0128100A855AD /* activities.json */; };
 		893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C61EA5591900EB9D51 /* AppDelegate.swift */; };
-		893583C91EA5591900EB9D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893583C81EA5591900EB9D51 /* ViewController.swift */; };
 		893583CC1EA5591900EB9D51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893583CA1EA5591900EB9D51 /* Main.storyboard */; };
 		893583CE1EA5591900EB9D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 893583CD1EA5591900EB9D51 /* Assets.xcassets */; };
 		893583D11EA5591900EB9D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893583CF1EA5591900EB9D51 /* LaunchScreen.storyboard */; };
@@ -22,7 +21,6 @@
 		F4640D611EAED97200DC02E2 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */; };
 		F4640D631EAED97900DC02E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D621EAED97900DC02E2 /* LoginViewController.swift */; };
 		F4640D651EB15E9500DC02E2 /* ReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */; };
-		F4640D671EB1796300DC02E2 /* ContinuedReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +31,6 @@
 		430755B91EB0128100A855AD /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activities.json; sourceTree = "<group>"; };
 		893583C31EA5591900EB9D51 /* Social Inclusion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Inclusion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893583C61EA5591900EB9D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		893583C81EA5591900EB9D51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		893583CB1EA5591900EB9D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		893583CD1EA5591900EB9D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		893583D01EA5591900EB9D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,7 +40,6 @@
 		F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		F4640D621EAED97900DC02E2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionViewController.swift; sourceTree = "<group>"; };
-		F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuedReflectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +78,7 @@
 				F4640D5D1EAED97200DC02E2 /* ActivityCollectionViewController.swift */,
 				F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */,
 				893583C61EA5591900EB9D51 /* AppDelegate.swift */,
-				893583C81EA5591900EB9D51 /* ViewController.swift */,
 				893583CA1EA5591900EB9D51 /* Main.storyboard */,
-				F4640D661EB1796300DC02E2 /* ContinuedReflectionViewController.swift */,
 				F4640D641EB15E9500DC02E2 /* ReflectionViewController.swift */,
 				4303551D1EA5CF8A007330A9 /* AudioRecordingViewController.swift */,
 				430355171EA5A769007330A9 /* Participant.swift */,
@@ -172,14 +166,12 @@
 			files = (
 				4303551C1EA5CDFD007330A9 /* ActivityLog.swift in Sources */,
 				F4640D601EAED97200DC02E2 /* ActivityCollectionViewController.swift in Sources */,
-				893583C91EA5591900EB9D51 /* ViewController.swift in Sources */,
 				F4640D611EAED97200DC02E2 /* InstructionsViewController.swift in Sources */,
 				893583C71EA5591900EB9D51 /* AppDelegate.swift in Sources */,
 				4303551E1EA5CF8A007330A9 /* AudioRecordingViewController.swift in Sources */,
 				F4640D5F1EAED97200DC02E2 /* ActivityCell.swift in Sources */,
 				4303551A1EA5CC97007330A9 /* Activity.swift in Sources */,
 				F4640D651EB15E9500DC02E2 /* ReflectionViewController.swift in Sources */,
-				F4640D671EB1796300DC02E2 /* ContinuedReflectionViewController.swift in Sources */,
 				F4640D631EAED97900DC02E2 /* LoginViewController.swift in Sources */,
 				430355181EA5A769007330A9 /* Participant.swift in Sources */,
 			);

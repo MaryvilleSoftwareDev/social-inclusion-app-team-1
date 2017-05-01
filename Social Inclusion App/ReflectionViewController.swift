@@ -20,7 +20,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     @IBOutlet weak var neutralEmotion: UIButton!
     @IBOutlet weak var positiveEmotion: UIButton!
     
-    //sound variables//
+    var completedActivityLog: CompletedActivityLog!
     
     @IBAction func recordButton(_ sender: Any) {
     }
@@ -30,11 +30,12 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     var audioRecorder: AVAudioRecorder!
     
     var reflectionActivity: ActivityLogItem!
+>>>>>>> ra-master
     
     @IBAction func negativeEmotionSelected(_ sender: Any) {
-        
-        reflectionActivity.reaction = .negative
-        
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .negative
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
@@ -42,23 +43,21 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     }
     
     @IBAction func neutralEmotionSelected(_ sender: Any) {
-        
-        reflectionActivity.reaction = .neutral
-
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .neutral
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-
     }
    
     @IBAction func positiveEmotionSelected(_ sender: Any) {
-        
-        reflectionActivity.reaction = .positive
-        
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .positive
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-
     }
     
     override func viewDidLoad() {
@@ -71,8 +70,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         summaryTextView.layer.borderColor = UIColor.black.cgColor
         
         summaryTextView.delegate = self
-        
-        
+    }
         //sound addition here//
         
         recordingSession = AVAudioSession.sharedInstance()
@@ -108,9 +106,15 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
     }
     
-    func submiteReflectionButtonPressed(_ sender: Any) {
-        reflectionActivity.recording = summaryTextView.text
-        reflectionActivity.dateCompleted = Date()
+    @IBAction func submiteReflectionButtonPressed(_ sender: Any) {
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].recording = summaryTextView.text
+        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
+        //let success = completedActivityLog.saveChanges()
+        
+        //if success {
+            print("Saved all of the items")
+        //}
         //still have to make it so that this relfectionActivity is logged onto the server
     }
     
