@@ -22,41 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< HEAD
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9P9-8u-PAh">
-                                <rect key="frame" x="133" y="303.5" width="110" height="61"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CZQ-JR-H97">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="61"/>
-                                        <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4y-kt-vOS">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="110" id="iUh-ZR-w3B"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grC-4w-OaA">
-                                                <rect key="frame" x="0.0" y="31" width="110" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="110" id="r5t-Ol-m8u"/>
-                                                </constraints>
-                                                <state key="normal" title="Log in"/>
-                                                <connections>
-                                                    <action selector="logInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ei-aH-0Ub"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="H4y-kt-vOS" firstAttribute="centerX" secondItem="CZQ-JR-H97" secondAttribute="centerX" id="oLA-dG-zXj"/>
-                                            <constraint firstAttribute="width" constant="110" id="v0x-fM-WKr"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-=======
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="code" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H4y-kt-vOS">
                                 <rect key="frame" x="97" y="289" width="182" height="36"/>
                                 <constraints>
@@ -67,7 +32,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
->>>>>>> ra-master
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="w2n-YJ-Qt0">
                                 <rect key="frame" x="149" y="89" width="77" height="99"/>
                                 <subviews>
@@ -92,7 +56,7 @@
                                 </constraints>
                                 <state key="normal" title="Log in"/>
                                 <connections>
-                                    <segue destination="BeW-MU-wk3" kind="show" id="Gs1-GS-f6p"/>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fob-dc-SmP"/>
                                 </connections>
                             </button>
                         </subviews>

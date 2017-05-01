@@ -26,8 +26,8 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
 //    var recordingSession: AVAudioSession!
 //    var audioRecorder: AVAudioRecorder!
     
-    var reflectionActivity: ActivityLogItem!
->>>>>>> ra-master
+    var activityLogItem: ActivityLogItem!
+
     
     @IBAction func negativeEmotionSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
@@ -69,7 +69,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         summaryTextView.delegate = self
 
     }
-=======
+
         //sound addition here//
         
 //        recordingSession = AVAudioSession.sharedInstance()
@@ -90,7 +90,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
 //            // failed to record!
 //        }
 //    }
->>>>>>> ra-master
+
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if summaryTextView.textColor == UIColor.lightGray {
@@ -118,5 +118,4 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         //still have to make it so that this relfectionActivity is logged onto the server
     }
 }
->>>>>>> ra-master
-}
+
