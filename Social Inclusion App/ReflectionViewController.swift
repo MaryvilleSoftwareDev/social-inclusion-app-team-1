@@ -20,10 +20,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     @IBOutlet weak var neutralEmotion: UIButton!
     @IBOutlet weak var positiveEmotion: UIButton!
     
-<<<<<<< HEAD
-    var activityLogItem: ActivityLogItem!
-=======
-    //sound variables//
+    var completedActivityLog: CompletedActivityLog!
     
 //    var recordButton: UIButton!
 //    var recordingSession: AVAudioSession!
@@ -33,39 +30,31 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
 >>>>>>> ra-master
     
     @IBAction func negativeEmotionSelected(_ sender: Any) {
-        
-        activityLogItem.reaction = .negative
-        
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .negative
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        
-        label3.text = activityLogItem.reaction.display
     
     }
     
     @IBAction func neutralEmotionSelected(_ sender: Any) {
-        
-        activityLogItem.reaction = .neutral
-
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .neutral
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        
-        label3.text = activityLogItem.reaction.display
-
     }
    
     @IBAction func positiveEmotionSelected(_ sender: Any) {
-        
-        activityLogItem.reaction = .positive
-        
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .positive
+        // resize the icons based on selection
         negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
         positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-        
-        label3.text = activityLogItem.reaction.display
-
     }
     
     override func viewDidLoad() {
@@ -78,15 +67,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         summaryTextView.layer.borderColor = UIColor.black.cgColor
         
         summaryTextView.delegate = self
-        
-        
-<<<<<<< HEAD
-        
-        
-        label1.text = String(describing: activityLogItem.dateCompleted)
-        label2.text = activityLogItem.participantCode
     }
-=======
         //sound addition here//
         
 //        recordingSession = AVAudioSession.sharedInstance()
@@ -122,93 +103,17 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
     }
     
-<<<<<<< HEAD
     @IBAction func submiteReflectionButtonPressed(_ sender: Any) {
-        activityLogItem.recording = summaryTextView.text
-        activityLogItem.dateCompleted = Date()
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].recording = summaryTextView.text
+        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
+        //let success = completedActivityLog.saveChanges()
+        
+        //if success {
+            print("Saved all of the items")
+        //}
         //still have to make it so that this relfectionActivity is logged onto the server
     }
-    
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
-    @IBOutlet weak var label4: UILabel!
-    
-    
-    
-    
-    
-    
-=======
-    func submiteReflectionButtonPressed(_ sender: Any) {
-        reflectionActivity.recording = summaryTextView.text
-        reflectionActivity.dateCompleted = Date()
-        //still have to make it so that this relfectionActivity is logged onto the server
-    }
-    
-//    //Audio Recodring//
-//    
-//    func loadRecordingUI() {
-//        recordButton = UIButton(frame: CGRect(x: 64, y: 64, width: 128, height: 64))
-//        recordButton.setTitle("Tap to Record", for: .normal)
-//        recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-//        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
-//        view.addSubview(recordButton)
-//    }
-//    
-//    func startRecording() {
-//        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-//        
-//        let settings = [
-//            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-//            AVSampleRateKey: 12000,
-//            AVNumberOfChannelsKey: 1,
-//            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-//        ]
-//        
-//        do {
-//            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-//            audioRecorder.delegate = self
-//            audioRecorder.record()
-//            
-//            recordButton.setTitle("Tap to Stop", for: .normal)
-//        } catch {
-//            finishRecording(success: false)
-//        }
-//    }
-//    
-//    func getDocumentsDirectory() -> URL {
-//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
-    //stop recording button//
-    
-//    func finishRecording(success: Bool) {
-//        audioRecorder.stop()
-//        audioRecorder = nil
-//        
-//        if success {
-//            recordButton.setTitle("Tap to Re-record", for: .normal)
-//        } else {
-//            recordButton.setTitle("Tap to Record", for: .normal)
-//            // recording failed :(
-//        }
-//    }
-//    
-//    func recordTapped() {
-//        if audioRecorder == nil {
-//            startRecording()
-//        } else {
-//            finishRecording(success: true)
-//        }
-//    }
-//    
-//    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-//        if !flag {
-//            finishRecording(success: false)
-//        }
-//    }
 }
 >>>>>>> ra-master
 }

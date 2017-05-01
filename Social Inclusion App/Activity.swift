@@ -8,7 +8,7 @@
 
 import UIKit
 
-// The Instructions type is used to create an array of instructions in the SocialSkills struct
+// The Instructions type is used in the Activity class to create an instructions array of one or more instructions for an activity
 
 struct Instructions {
     
@@ -54,7 +54,7 @@ struct Instructions {
     }
 }
 
-// The SocialSkills type is used to create and array of SocialSkills in the Activity class
+// The SocialSkills type is reserved for future revisions of the app
 struct SocialSkills {
     
     var skillName:String
@@ -64,10 +64,6 @@ struct SocialSkills {
         self.skillName = skillName
         self.skillDetails = skillDetails
     }
-    
-    // var skillInstructions = [Instructions]()
-    
-    // once read in as part of the readActivities function the data is static as the app runs
 }
 
 // The Activity class defines a single activity that is added to the ActivityCatalog when read from a web database
@@ -90,14 +86,13 @@ class Activity {
         self.instructions = instructions
     }
     
-    
     init (from dict: [String:Any?]) {
         
         self.name = dict["name"] as! String
         self.activityCode = dict["activityCode"] as! String
         self.description = dict["description"] as! String
-        //self.icon = dict["icon"] as! UIImage
         
+        // may consider adding this as a separate method
         let iconText = dict["icon"] as! String
         if iconText == "coffee" {
             self.icon = #imageLiteral(resourceName: "coffee")
@@ -126,30 +121,43 @@ class Activity {
     // once read in as part of the readActivities function the data is static as the app runs
 }
 
-// The ActivityCatalog contains a list of all activities available
-// We should determine how to store in a local file once read from a web database
-// Also how to trigger an ActivityCatalog update if there are updates in the web database
-class CompletedActivityCatalog {
+// This is a class to collect all completed activities for a participant
+// The CompletedActivity.log file is a temporary archive to hold completed activities until results can be submitted to a web server
+// Future implementation will be to read the CompletedActivity.log archive, then stream as json to a web server and purge the archive
+
+class CompletedActivityLog {
     
-    var allActivities = [ActivityLogItem]()
+    var allCompletedActivities: [ActivityLogItem] = []
     
     let activityLogFileURL: URL = {
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory,
                                      in: .userDomainMask)
         let documentDirectory = documentsDirectories.first!
-        return documentDirectory.appendingPathComponent("CompletedActivityCatalog.log")
+        return documentDirectory.appendingPathComponent("CompletedActivity.log")
     }()
     
+    // Creates a shell for the current activity log item
+    func createLogEntry() -> ActivityLogItem {
+        let newLogEntry = ActivityLogItem()
+        allCompletedActivities.append(newLogEntry)
+        return newLogEntry
+    }
+    
+    // reads the CompletedActivity.log archive and appends a shell for the current activity log item
+    // or creates a new CompletedActivityLog with a shell for the current activity log item
     init() {
-        if let activityLogCatalog =
+        if let activityLog =
             NSKeyedUnarchiver.unarchiveObject(withFile: activityLogFileURL.path) as? [ActivityLogItem] {
-            allActivities += activityLogCatalog
+            allCompletedActivities += activityLog
+            allCompletedActivities += [createLogEntry()]
+        } else {
+            allCompletedActivities = [createLogEntry()]
         }
     }
 
     func saveChanges() -> Bool {
         print("Saving items to: \(activityLogFileURL.path)")
-        return NSKeyedArchiver.archiveRootObject(allActivities, toFile: activityLogFileURL.path)
+        return NSKeyedArchiver.archiveRootObject(allCompletedActivities, toFile: activityLogFileURL.path)
     }
 }
