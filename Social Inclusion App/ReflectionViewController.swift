@@ -22,8 +22,8 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     
     //sound variables//
     
-//    @IBAction func recordButton(_ sender: Any) {
-//    }
+    @IBAction func recordButton(_ sender: Any) {
+    }
     
     var recordButton: UIButton!
     var recordingSession: AVAudioSession!
@@ -119,7 +119,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     func loadRecordingUI() {
         recordButton = UIButton(frame: CGRect(x: 64, y: 64, width: 128, height: 64))
         recordButton.setTitle("Tap to Record", for: .normal)
-//        recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
         recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
         view.addSubview(recordButton)
     }

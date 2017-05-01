@@ -1,10 +1,10 @@
-//
+
 //  AudioRecordingViewController.swift
 //  New Social Inclusion App
 //
 //  Created by Mary Chopin on 4/21/17.
 //  Copyright © 2017 David Chopin. All rights reserved.
-//
+
 
 /*
  import UIKit
@@ -12,10 +12,10 @@
  
  class AudioRecordingViewController: UIViewController, AVAudioRecorderDelegate {
  
- //Outlets
+ Outlets
  @IBOutlet weak var recordingTimeLabel: UILabel!
  
- //Variables
+ Variables
  var audioRecorder: AVAudioRecorder!
  var meterTimer:Timer!
  var isAudioRecordingGranted: Bool!
@@ -53,28 +53,28 @@
  audioRecorder = nil
  }
  
- //MARK:- Audio recorder buttons action.
+ MARK:- Audio recorder buttons action.
  @IBAction func audioRecorderAction(_ sender: UIButton) {
  
  if isAudioRecordingGranted {
  
- //Create the session.
+ Create the session.
  let session = AVAudioSession.sharedInstance()
  
  do {
- //Configure the session for recording and playback.
+ Configure the session for recording and playback.
  try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
  try session.setActive(true)
- //Set up a high-quality recording session.
+ Set up a high-quality recording session.
  let settings = [
  AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
  AVSampleRateKey: 44100,
  AVNumberOfChannelsKey: 2,
  AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
  ]
- //Create audio file name URL
+ Create audio file name URL
  let audioFilename = getDocumentsDirectory().appendingPathComponent("audioRecording.m4a")
- //Create the audio recording, and assign ourselves as the delegate
+ Create the audio recording, and assign ourselves as the delegate
  audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
  audioRecorder.delegate = self
  audioRecorder.isMeteringEnabled = true
@@ -125,7 +125,7 @@
  return documentsDirectory
  }
  
- //MARK:- Audio recoder delegate methods
+ MARK:- Audio recoder delegate methods
  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
  
  if !flag {
