@@ -96,8 +96,8 @@ class Activity {
         let iconText = dict["icon"] as! String
         if iconText == "coffee" {
             self.icon = #imageLiteral(resourceName: "coffee")
-        } else if iconText == "grand-piano" {
-            self.icon = #imageLiteral(resourceName: "grand-piano")
+        } else if iconText == "shopping-cart" {
+            self.icon = #imageLiteral(resourceName: "shopping-cart")
         } else if iconText == "dog walk" {
             self.icon = #imageLiteral(resourceName: "dog walk")
         } else if iconText == "church" {

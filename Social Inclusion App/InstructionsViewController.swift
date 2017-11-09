@@ -11,8 +11,9 @@ import UIKit
 class InstructionsViewController: UIViewController {
     @IBOutlet weak var instructionsNavigationController: UINavigationItem!
     @IBOutlet weak var instructionsTextView: UITextView!
+    @IBOutlet weak var socialSkillLabel: UILabel!
     @IBOutlet var socialSkillTextView: UITextView!
-    @IBOutlet var instructionStepTitle: UITextField!
+    @IBOutlet var instructionStepTitle: UILabel!
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var finishButton: UIButton!
     @IBOutlet weak var prevButton: UIBarButtonItem!
@@ -45,6 +46,9 @@ class InstructionsViewController: UIViewController {
         // Set text values for the current instruction
         instructionsNavigationController.title = instructionActivity.name
         instructionStepTitle.text = instructionActivity.instructions[selectedInstruction].title
+        if instructionActivity.instructions[selectedInstruction].socialSkill != nil {
+            socialSkillLabel.text = String("Social skill: \(instructionActivity.instructions[selectedInstruction].socialSkill!)")
+        }
         socialSkillTextView.text = instructionActivity.instructions[selectedInstruction].socialSkillText
         instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
         

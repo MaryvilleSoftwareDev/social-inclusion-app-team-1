@@ -56,8 +56,8 @@ class ActivityLogItem: NSObject, NSCoding {
     
     
     var dateCompleted: Date?
-    var reaction: EmotionEmoji
-    var recording: String? //audio file
+    var reaction: Int?
+    var response: String? //audio file
     var participantCode: String
     var activityCode: String
     var instructionTimer = [InstructionTimer]()
@@ -65,16 +65,16 @@ class ActivityLogItem: NSObject, NSCoding {
     override init() {
         
         self.dateCompleted = nil
-        self.reaction = .none
-        self.recording = ""
+        self.reaction = nil
+        self.response = ""
         self.activityCode = ""
         self.participantCode = ""
     }
     
     required init(coder aDecoder: NSCoder) {
         dateCompleted = aDecoder.decodeObject(forKey: "dateCompleted") as? Date
-        reaction = (aDecoder.decodeObject(forKey: "reaction") as? EmotionEmoji)!
-        recording = aDecoder.decodeObject(forKey: "recording") as? String
+        reaction = (aDecoder.decodeObject(forKey: "reaction") as? Int)!
+        response = aDecoder.decodeObject(forKey: "response") as? String
         participantCode = aDecoder.decodeObject(forKey: "participantCode") as! String
         activityCode = aDecoder.decodeObject(forKey: "activityCode") as! String
         instructionTimer = [aDecoder.decodeObject(forKey: "instructionTimer") as! InstructionTimer]
@@ -84,7 +84,7 @@ class ActivityLogItem: NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(dateCompleted, forKey: "dateCompleted")
         aCoder.encode(reaction, forKey: "reaction")
-        aCoder.encode(recording, forKey: "recording")
+        aCoder.encode(response, forKey: "response")
         aCoder.encode(participantCode, forKey: "participantCode")
         aCoder.encode(activityCode, forKey: "activityCode")
         aCoder.encode(instructionTimer, forKey: "instructionTimer")

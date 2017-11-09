@@ -1,38 +1,38 @@
-[
- {
-  "name":"Learn Instrument",
+ [
+  {
+  "name":"Go Food Shopping",
   "activityCode":"LI1",
-  "description":"You will play an instrument",
+  "description":"Shopping in your favorite grocery store is always fun! You need to have your shopping list of food items and your money with you, then you are ready to enjoy this experience! Have fun!",
   "category":"Do we need this?",
-  "icon":"grand-piano",
+  "icon":"shopping-cart",
   "instructions":
   [
-    {
-	 "title":"Buy an instrument",
-     "instructionCode":"LI1-S1",
-     "details":"You may want to start with an affordable insrument",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",
-    },
-	{
-	 "title":"Find a good instructor",
-     "instructionCode":"LI1-S2",
-     "details":"If you cannot find an affordable instructor, there are many instrument teaching books for cheap",
-	},
-	{
-	 "title":"Begin performing",
-     "instructionCode":"LI1-S3",
-     "details":"Start with performing in front of those you are closest to before performing to less well-known peers",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",	
-	},
-	{
-	 "title":"Step 4",
-     "instructionCode":"LI1-S4",
-     "details":"Instruction details with no social skill",
-	}
-  ]
- },
+   {
+   "title":"Enter the Store",
+   "instructionCode":"LI1-S1",
+   "details":"When you enter the store, you will see a number of rows/isles with lots of food items: first check to see the name of each row/isle so you can begin to look for your first item on your shopping list. Also, take a basket to put in all your items.",
+   },
+   {
+   "title":"Ask for Help from a Staff Member",
+   "instructionCode":"LI1-S2",
+   "details":"In the store, you will see many other shoppers like yourself, and the staff working in the store. They are there to help you! If you need any help, please go to a staff member and ask for help. Remember to first give them a friendly smile and say hello!",
+   "socialSkill":"Keeping good eye-contact",
+   "socialSkillText":"Keeping good eye contact communicates that you are interested and engaged in the conversation.",
+   },
+   {
+   "title":"Use Good Speaking Skills with Staff Member",
+   "instructionCode":"LI1-S3",
+   "details":"The staff member will explain to you in which isle to find your food items if you struggle to find it yourself. When the staff member is explaining to you what to do next to find your food/ shopping item, make sure that you listen well to the explanation.",
+   "socialSkill":"Listening",
+   "socialSkillText":"It is important to listen closely to the information provided by the staff member, it can often times seem easy to forget. Using good volume will show that you are comfortable and will ensure that the staff member hears you clearly.",
+   },
+   {
+   "title":"Check Out Your Items",
+   "instructionCode":"LI1-S4",
+   "details":"When you have find all your items, you will need to find a check point where you will pay for your items. When you are at the check point, remember to ask how much money your items cost and hand the money to the cashier.",
+   }
+   ]
+  },
  {
   "name":"Ordering a Meal",
   "activityCode":"ME1",

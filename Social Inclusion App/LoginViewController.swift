@@ -41,6 +41,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         loadDateAndTime()
+        
+        //The following line of code allows us to immediately segue to the activityviewcontroller so that we do not have to log in each time we are testing the application. Removing this line of code will require the tester/user to login with an active login code.
+        performSegue(withIdentifier: "segueToActivities", sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
