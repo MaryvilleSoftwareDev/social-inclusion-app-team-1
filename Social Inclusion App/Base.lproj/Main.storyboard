@@ -23,9 +23,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="code" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H4y-kt-vOS">
-                                <rect key="frame" x="97" y="289" width="182" height="36"/>
+                                <rect key="frame" x="161.5" y="289" width="53.5" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="182" id="iUh-ZR-w3B"/>
                                     <constraint firstAttribute="height" constant="36" id="nJG-Sk-oLn"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -50,10 +49,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grC-4w-OaA">
-                                <rect key="frame" x="133" y="341" width="110" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="r5t-Ol-m8u"/>
-                                </constraints>
+                                <rect key="frame" x="167" y="341" width="42" height="30"/>
                                 <state key="normal" title="Log in"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t2W-2Z-W4p"/>
@@ -83,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="-233"/>
+            <point key="canvasLocation" x="1065" y="-320"/>
         </scene>
         <!--Pick an activity-->
         <scene sceneID="HV4-JY-Uyc">
@@ -155,7 +151,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="qNf-HW-y2q">
                                 <rect key="frame" x="16" y="153" width="343" height="414"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zrf-B1-wqk">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zrf-B1-wqk">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="286"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -167,7 +163,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-lc-rPB">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-lc-rPB">
                                         <rect key="frame" x="0.0" y="316" width="343" height="98"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -264,7 +260,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boC-SX-Klg">
-                                <rect key="frame" x="110.5" y="594" width="154" height="36"/>
+                                <rect key="frame" x="111" y="594" width="154" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Submit Reflection"/>
                                 <connections>
@@ -272,7 +268,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One a scale from 1 to 10, how comfortable did you feel doing this activity?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUW-Js-G6E">
-                                <rect key="frame" x="24" y="81" width="327" height="41"/>
+                                <rect key="frame" x="25.5" y="81" width="325.5" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -293,7 +289,7 @@
                                 </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nv-0v-w4x">
-                                <rect key="frame" x="19" y="168" width="8" height="20.5"/>
+                                <rect key="frame" x="19" y="168" width="8" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -302,14 +298,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rID-qA-yC5" firstAttribute="centerX" secondItem="ljo-qP-sCU" secondAttribute="centerX" id="J1A-5w-VBX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BUW-Js-G6E" secondAttribute="trailing" constant="8" id="NBH-zg-qzE"/>
-                            <constraint firstItem="BUW-Js-G6E" firstAttribute="leading" secondItem="ljo-qP-sCU" secondAttribute="leadingMargin" constant="8" id="NdL-Cw-HBw"/>
-                            <constraint firstItem="BUW-Js-G6E" firstAttribute="centerX" secondItem="ljo-qP-sCU" secondAttribute="centerX" id="P1c-VL-egh"/>
+                            <constraint firstItem="BUW-Js-G6E" firstAttribute="centerX" secondItem="Hx2-Z5-OQJ" secondAttribute="centerX" id="J7k-SX-16l"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="BUW-Js-G6E" secondAttribute="trailing" id="NBH-zg-qzE"/>
+                            <constraint firstItem="BUW-Js-G6E" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ljo-qP-sCU" secondAttribute="leadingMargin" id="NdL-Cw-HBw"/>
                             <constraint firstItem="rID-qA-yC5" firstAttribute="leading" secondItem="ljo-qP-sCU" secondAttribute="leadingMargin" constant="3" id="Vs9-ar-orh"/>
                             <constraint firstItem="BUW-Js-G6E" firstAttribute="top" secondItem="9e6-Tf-tkz" secondAttribute="bottom" constant="17" id="WFC-9c-nOM"/>
                             <constraint firstItem="Hx2-Z5-OQJ" firstAttribute="leading" secondItem="ljo-qP-sCU" secondAttribute="leadingMargin" id="ZuV-tq-42D"/>
                             <constraint firstItem="boC-SX-Klg" firstAttribute="top" secondItem="rID-qA-yC5" secondAttribute="bottom" constant="7" id="jnn-5a-d9N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rID-qA-yC5" secondAttribute="trailing" constant="3" id="k6z-TW-Fv3"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2nv-0v-w4x" secondAttribute="trailingMargin" id="ldt-1n-lNO"/>
                             <constraint firstItem="boC-SX-Klg" firstAttribute="centerX" secondItem="ljo-qP-sCU" secondAttribute="centerX" id="n65-sk-R5y"/>
                             <constraint firstItem="Hx2-Z5-OQJ" firstAttribute="top" secondItem="BUW-Js-G6E" secondAttribute="bottom" constant="8" id="o7t-c4-7fj"/>
                             <constraint firstItem="Hx2-Z5-OQJ" firstAttribute="trailing" secondItem="ljo-qP-sCU" secondAttribute="trailingMargin" id="oe5-rV-JJ6"/>

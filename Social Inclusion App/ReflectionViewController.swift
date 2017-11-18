@@ -155,7 +155,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         for touch in touches {
             if touch.location(in: view).x > summaryTextView.frame.maxX || touch.location(in: view).x < summaryTextView.frame.minX || touch.location(in: view).y > summaryTextView.frame.maxY || touch.location(in: view).y < summaryTextView.frame.minY || slider.frame.contains(touch.location(in: view)) {
                 self.view.endEditing(true)
-                if summaryTextView.text.characters.count < 1 {
+                if summaryTextView.text.count < 1 {
                     summaryTextView.text = "Type how you felt here..."
                     summaryTextView.textColor = (UIColor.lightGray)
                 }
