@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
 import AVFoundation
+import MessageUI
 
 
 
 
-class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate  {
+class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, MFMailComposeViewControllerDelegate  {
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var submitReflectionButton: UIButton!
     @IBOutlet weak var slider: UISlider!
@@ -26,6 +26,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
 //    var audioRecorder: AVAudioRecorder!
     
     var activityLogItem: ActivityLogItem!
+    var participant : Participant!
 
     
     /*
@@ -122,6 +123,36 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
     }
     
+    func configureMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        mailComposerVC.setToRecipients(["julia.louw@nuigalway.ie"])
+        mailComposerVC.setSubject("\(participant.name)'s Social Activity Report")
+        mailComposerVC.setMessageBody("Name: \(participant.name)\nEmail: \(participant.email ?? " ")\nParticipant code: \(participant.code)\n\nActivity: \(completedActivityLog.allCompletedActivities[thisLogItem].activityCode)\nComfort level: \(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10\nResponse: \(String(completedActivityLog.allCompletedActivities[thisLogItem].response!) ?? " ")\nDate completed: \(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? Date.init(timeIntervalSince1970: 1))", isHTML: false)
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send this email. Please check your device's email configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case MFMailComposeResult.cancelled:
+            print("Mail Cancelled")
+        case MFMailComposeResult.sent:
+            print("Mail Sent")
+            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
+        default:
+            break
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func submitReflection() {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].response = summaryTextView.text
@@ -131,7 +162,13 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
             completedActivityLog.allCompletedActivities[thisLogItem].response = nil
         }
         
-        self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
+        let mailComposeViewController = configureMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        //self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
         
         //let success = completedActivityLog.saveChanges()
         //if success {

@@ -24,6 +24,7 @@ class InstructionsViewController: UIViewController {
     var instructionActivity: Activity!
     var completedActivityLog: CompletedActivityLog!
     var selectedInstruction: Int! = 0
+    var participant : Participant!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -75,6 +76,7 @@ class InstructionsViewController: UIViewController {
             let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
             reflectionViewController.completedActivityLog = self.completedActivityLog
+            reflectionViewController.participant = self.participant
             self.navigationController?.pushViewController(reflectionViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
@@ -82,6 +84,7 @@ class InstructionsViewController: UIViewController {
             nextViewController.selectedInstruction = selectedInstruction + 1
             nextViewController.instructionActivity = instructionActivity
             nextViewController.completedActivityLog = completedActivityLog
+            nextViewController.participant = self.participant
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
 }

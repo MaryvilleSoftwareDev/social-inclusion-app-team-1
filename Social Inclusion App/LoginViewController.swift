@@ -14,8 +14,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     var completedActivityLog: CompletedActivityLog!
+    var participant = Participant.init(name: "David", email: "dchopin1@live.maryville.edu", code: "000000")
+    //This participant is only preset because we are currently skipping the login phase. Once the login screen is reimplemented, this participant variable should be optional and then set to whatever data corresponds to the code entered on the login page.
     
-    let listOfParticipants = [Participant(name: " ", email: nil, code: "000000"), Participant(name: " ", email: nil, code: "000001"), Participant(name: " ", email: nil, code: "000002")]
+    let listOfParticipants = [Participant(name: "David", email: "dchopin1@live.maryville.edu", code: "000000"), Participant(name: " ", email: nil, code: "000001"), Participant(name: " ", email: nil, code: "000002")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +50,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         // looping only works if the first participant code is selected, need to re-think this logic
-        for participant in listOfParticipants {
-            if participant
+        for thisParticipant in listOfParticipants {
+            if thisParticipant
                 .code == codeTextField.text {
+                participant = thisParticipant
                 let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
                 completedActivityLog.allCompletedActivities[thisLogItem].participantCode = codeTextField.text!
                 codeTextField.text = nil
@@ -65,6 +68,6 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let activityCollectionViewController = segue.destination as! ActivityCollectionViewController
         activityCollectionViewController.completedActivityLog = self.completedActivityLog
-        activityCollectionViewController.participantCode = codeTextField.text!
+        activityCollectionViewController.participant = self.participant
     }
 }

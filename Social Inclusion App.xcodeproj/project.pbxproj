@@ -35,6 +35,7 @@
 		893583CD1EA5591900EB9D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		893583D01EA5591900EB9D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		893583D21EA5591900EB9D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C603C4601FC209B400205099 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F4640D5C1EAED97200DC02E2 /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		F4640D5D1EAED97200DC02E2 /* ActivityCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewController.swift; sourceTree = "<group>"; };
 		F4640D5E1EAED97200DC02E2 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 			children = (
 				893583C51EA5591900EB9D51 /* Social Inclusion App */,
 				893583C41EA5591900EB9D51 /* Products */,
+				C603C45F1FC209B400205099 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +91,14 @@
 				893583D21EA5591900EB9D51 /* Info.plist */,
 			);
 			path = "Social Inclusion App";
+			sourceTree = "<group>";
+		};
+		C603C45F1FC209B400205099 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C603C4601FC209B400205099 /* MessageUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +133,7 @@
 				TargetAttributes = {
 					893583C21EA5591900EB9D51 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 93B8EGHJJA;
+						DevelopmentTeam = PL5L36Z2JF;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -297,7 +307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93B8EGHJJA;
+				DEVELOPMENT_TEAM = PL5L36Z2JF;
 				INFOPLIST_FILE = "Social Inclusion App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -311,7 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 93B8EGHJJA;
+				DEVELOPMENT_TEAM = PL5L36Z2JF;
 				INFOPLIST_FILE = "Social Inclusion App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
