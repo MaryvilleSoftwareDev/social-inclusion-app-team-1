@@ -10,9 +10,6 @@ import UIKit
 import AVFoundation
 import MessageUI
 
-
-
-
 class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, MFMailComposeViewControllerDelegate  {
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var submitReflectionButton: UIButton!
@@ -79,7 +76,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         keyboardToolbar.barTintColor = UIColor.white
         
         let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(submitReflection)
+        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(sendReflection)
         )
         submitButton.tintColor = UIColor(red: 0, green: (122/255), blue: 1, alpha: 1)
         keyboardToolbar.items = [flexible, submitButton]
@@ -153,7 +150,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         self.dismiss(animated: true, completion: nil)
     }
     
-    func submitReflection() {
+    /*func submitReflection() {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].response = summaryTextView.text
         completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
@@ -179,10 +176,52 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         print(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted!)
         print(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)
         print(completedActivityLog.allCompletedActivities[thisLogItem].response ?? "N/A")
+    }*/
+    
+    func sendReflection() {
+        
+        //Update completedActivityLog
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].response = summaryTextView.text
+        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = Int(slider.value)
+        if summaryTextView.text == "Type how you felt here..." {
+            completedActivityLog.allCompletedActivities[thisLogItem].response = nil
+        }
+        
+        // prepare json data
+        let json: [String: Any] = ["Name" : "David"] //["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].response!) ?? " ", "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? Date.init(timeIntervalSince1970: 1)]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+        
+        // create post request
+        let url = URL(string: "https://pgtest-01.musites.org/api/index.php?email=dchopin1@live.maryville.edu")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // insert json data to the request
+        request.httpBody = jsonData
+        
+        print(request.httpBody ?? "UGH")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
+        self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
     }
     
     @IBAction func submitReflectionButtonPressed(_ sender: Any) {
-        submitReflection()
+        //submitReflection()
+        sendReflection()
     }
     @IBAction func sliderMoved(_ sender: Any) {
         sliderValue.text = String(Int(slider.value))

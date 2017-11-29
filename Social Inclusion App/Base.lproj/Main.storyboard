@@ -264,7 +264,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Submit Reflection"/>
                                 <connections>
-                                    <action selector="submitReflectionButtonPressed:" destination="Lma-GX-AXv" eventType="touchUpInside" id="BZ4-6l-JbH"/>
+                                    <action selector="submitReflectionButtonPressed:" destination="Lma-GX-AXv" eventType="touchUpInside" id="TGP-rt-FmW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One a scale from 1 to 10, how comfortable did you feel doing this activity?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUW-Js-G6E">
