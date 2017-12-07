@@ -18,7 +18,19 @@ class InstructionsViewController: UIViewController {
     @IBOutlet var finishButton: UIButton!
     @IBOutlet weak var prevButton: UIBarButtonItem!
 
+    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
+    
     @IBAction func finishButtonPressed(_ sender: UIButton) {
+        let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+       
+        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        
+        let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
+        completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
+        reflectionViewController.completedActivityLog = self.completedActivityLog
+        reflectionViewController.participant = self.participant
+        self.navigationController?.pushViewController(reflectionViewController, animated: true)
+        completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].convertDatesToUnix(start: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].startTime!, stop: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime!)
     }
     
     var instructionActivity: Activity!
@@ -63,6 +75,12 @@ class InstructionsViewController: UIViewController {
         if selectedInstruction == 0 {
             prevButton.title = "Activities"
         }
+        
+        if instructionActivity.instructions[selectedInstruction].socialSkillText == nil {
+            socialSkillTextView.isHidden = true
+            socialSkillLabel.isHidden = true
+        }
+        //scrollViewHeight.constant = instructionStepTitle.frame.height + instructionsTextView.frame.height + socialSkillLabel.frame.height + socialSkillTextView.frame.height + finishButton.frame.height + 135
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -87,11 +105,29 @@ class InstructionsViewController: UIViewController {
             nextViewController.participant = self.participant
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
+        completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].convertDatesToUnix(start: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].startTime!, stop: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime!)
 }
     @IBAction func prevButtonSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        func setTextViewFrame(textView: UITextView) {
+            let contentSize = textView.sizeThatFits(textView.bounds.size)
+            var frame = textView.frame
+            frame.size.height = contentSize.height
+            textView.frame = frame
+            
+            let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
+            
+            textView.addConstraint(aspectRatioTextViewConstraint)
+        }
+        setTextViewFrame(textView: instructionsTextView)
+        setTextViewFrame(textView: socialSkillTextView)
     }
 }

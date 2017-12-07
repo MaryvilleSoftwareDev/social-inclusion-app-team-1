@@ -150,6 +150,8 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="qNf-HW-y2q">
                                 <rect key="frame" x="16" y="153" width="343" height="414"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ur-w1-S1M">
+                                <rect key="frame" x="0.0" y="56" width="375" height="603"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zrf-B1-wqk">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="286"/>
@@ -165,9 +167,59 @@
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-lc-rPB">
                                         <rect key="frame" x="0.0" y="316" width="343" height="98"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gr3-tF-AoN">
+                                        <rect key="frame" x="0.0" y="-8" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3av-Af-6ao">
+                                                <rect key="frame" x="8" y="134" width="77" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.97032368183135986" green="0.39238012781051473" blue="0.27091993911388695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Skill text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="htZ-e3-qE5">
+                                                <rect key="frame" x="8" y="160" width="359" height="36.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJY-J7-qAK">
+                                                <rect key="frame" x="8" y="20" width="359" height="27.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVC-I6-Vwg">
+                                                <rect key="frame" x="158" y="236.5" width="59" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <state key="normal" title="Finish"/>
+                                                <connections>
+                                                    <action selector="finishButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="5pp-Hy-PRN"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Instructions text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Iw5-IT-Rgv">
+                                                <rect key="frame" x="8" y="57.5" width="359" height="36.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="98" id="oNv-R7-teS"/>
+                                            <constraint firstItem="Iw5-IT-Rgv" firstAttribute="leading" secondItem="Gr3-tF-AoN" secondAttribute="leading" constant="8" id="10G-WX-jPH"/>
+                                            <constraint firstItem="3av-Af-6ao" firstAttribute="top" secondItem="Iw5-IT-Rgv" secondAttribute="bottom" constant="40" id="8Qw-ft-ban"/>
+                                            <constraint firstItem="Iw5-IT-Rgv" firstAttribute="top" secondItem="yJY-J7-qAK" secondAttribute="bottom" constant="10" id="D0B-3x-eAh"/>
+                                            <constraint firstItem="yJY-J7-qAK" firstAttribute="top" secondItem="Gr3-tF-AoN" secondAttribute="top" constant="20" id="ISW-vZ-N6j"/>
+                                            <constraint firstItem="htZ-e3-qE5" firstAttribute="top" secondItem="3av-Af-6ao" secondAttribute="bottom" constant="5" id="Uwa-h4-mme"/>
+                                            <constraint firstItem="FVC-I6-Vwg" firstAttribute="top" secondItem="htZ-e3-qE5" secondAttribute="bottom" constant="40" id="cau-jn-0ox"/>
+                                            <constraint firstAttribute="height" constant="1000" id="eIf-V5-q0k"/>
+                                            <constraint firstAttribute="trailing" secondItem="yJY-J7-qAK" secondAttribute="trailing" constant="8" id="k0w-JX-sih"/>
+                                            <constraint firstItem="Iw5-IT-Rgv" firstAttribute="trailing" secondItem="htZ-e3-qE5" secondAttribute="trailing" id="nth-jW-1am"/>
+                                            <constraint firstItem="FVC-I6-Vwg" firstAttribute="centerX" secondItem="Gr3-tF-AoN" secondAttribute="centerX" id="qph-FO-0sq"/>
+                                            <constraint firstItem="yJY-J7-qAK" firstAttribute="leading" secondItem="Gr3-tF-AoN" secondAttribute="leading" constant="8" id="quj-sA-0Fc"/>
+                                            <constraint firstItem="Iw5-IT-Rgv" firstAttribute="leading" secondItem="htZ-e3-qE5" secondAttribute="leading" id="sNB-lY-XCf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Iw5-IT-Rgv" secondAttribute="trailing" constant="8" id="sQB-I8-LDa"/>
+                                            <constraint firstItem="Iw5-IT-Rgv" firstAttribute="leading" secondItem="3av-Af-6ao" secondAttribute="leading" id="xDE-SS-6OI"/>
                                         </constraints>
                                         <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -183,6 +235,11 @@
                                 <rect key="frame" x="16" y="72" width="343" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="j4r-fO-mdT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gr3-tF-AoN" secondAttribute="trailing" id="Lhr-tK-p3j"/>
+                                    <constraint firstItem="Gr3-tF-AoN" firstAttribute="top" secondItem="0ur-w1-S1M" secondAttribute="top" id="gtv-c4-XQl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gr3-tF-AoN" secondAttribute="trailing" id="rfR-Wd-9hx"/>
+                                    <constraint firstItem="Gr3-tF-AoN" firstAttribute="leading" secondItem="0ur-w1-S1M" secondAttribute="leading" id="sfY-RL-5y0"/>
+                                    <constraint firstItem="Gr3-tF-AoN" firstAttribute="centerX" secondItem="0ur-w1-S1M" secondAttribute="centerX" id="yWr-iu-dtH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -202,7 +259,6 @@
                                             <action selector="nextButtonPressed:" destination="9rd-5v-NDi" eventType="touchUpInside" id="pfe-sX-49M"/>
                                         </connections>
                                     </button>
-                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -214,8 +270,8 @@
                             <constraint firstItem="j7x-XA-pQs" firstAttribute="leading" secondItem="JJ4-RG-e8d" secondAttribute="leadingMargin" id="mrM-za-BFF"/>
                             <constraint firstItem="Qbi-6c-No8" firstAttribute="top" secondItem="qNf-HW-y2q" secondAttribute="bottom" constant="16" id="vm4-Qt-CHe"/>
                             <constraint firstItem="qNf-HW-y2q" firstAttribute="top" secondItem="j7x-XA-pQs" secondAttribute="bottom" constant="8" symbolic="YES" id="woY-x4-shO"/>
-                            <constraint firstItem="j7x-XA-pQs" firstAttribute="top" secondItem="Fo6-ck-dkn" secondAttribute="bottom" constant="8" symbolic="YES" id="wr9-Ti-h0h"/>
-                            <constraint firstItem="j7x-XA-pQs" firstAttribute="trailing" secondItem="JJ4-RG-e8d" secondAttribute="trailingMargin" id="x1O-1j-vg4"/>
+                            <constraint firstItem="vSP-UT-FHc" firstAttribute="top" secondItem="0ur-w1-S1M" secondAttribute="bottom" id="5Eu-KM-RAK"/>
+                            <constraint firstAttribute="trailing" secondItem="0ur-w1-S1M" secondAttribute="trailing" id="DLy-ZF-eIb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="hqA-U3-Yxx">
@@ -232,10 +288,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="finishButton" destination="GXc-tG-f4u" id="sA9-GK-jLi"/>
                         <outlet property="instructionStepTitle" destination="j7x-XA-pQs" id="rcb-V7-7w2"/>
                         <outlet property="instructionsNavigationController" destination="hqA-U3-Yxx" id="TF6-Fu-FZf"/>
-                        <outlet property="instructionsTextView" destination="Zrf-B1-wqk" id="w6j-Yc-Fza"/>
+                        <outlet property="instructionsTextView" destination="Iw5-IT-Rgv" id="vLc-Vv-26j"/>
                         <outlet property="nextButton" destination="YZh-5D-etB" id="tLc-rZ-y5y"/>
                         <outlet property="prevButton" destination="jJB-Ij-LuT" id="BVN-8L-aU9"/>
                         <outlet property="socialSkillLabel" destination="Leo-Lp-GNw" id="2bT-9f-S16"/>

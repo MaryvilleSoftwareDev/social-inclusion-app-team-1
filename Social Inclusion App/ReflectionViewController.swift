@@ -11,50 +11,81 @@ import AVFoundation
 import MessageUI
 
 class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, MFMailComposeViewControllerDelegate  {
+    var writingEnabled = true
+    
+    //Load audio player
+    var audioPlayer = AVAudioPlayer()
+    var startSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "StartSound", ofType: "wav")!)
+    var endSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "EndSound", ofType: "wav")!)
+    func playSound(sound: NSURL) {
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try! AVAudioSession.sharedInstance().setActive(true)
+        
+        try! audioPlayer = AVAudioPlayer(contentsOf: sound as URL)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+    }
+    
+    //Storyboard elements
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var submitReflectionButton: UIButton!
+    
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var sliderValue: UILabel!
     
+    @IBOutlet weak var audioRecordButton: UIButton!
+    @IBOutlet weak var recordAudioLabel: UILabel!
+    @IBAction func recordAudioButtonPressed(_ sender: Any) {
+        if audioRecorder == nil {
+            self.recordAudioLabel.text = "Tap to stop recording"
+            self.startRecording()
+            playSound(sound: startSound)
+        } else {self.finishRecording(success: true)
+            /*if recordingEnded == false {
+                self.recordAudioLabel.text = "Tap to record again"
+                self.finishRecording(success: true)
+                recordingEnded = true
+                playSound(sound: endSound)
+            } else {
+                audioRecorder = nil
+                recordingEnded = false
+                self.recordAudioLabel.text = "Tap to stop recording"
+                playSound(sound: startSound)
+                self.startRecording()
+            }*/
+            
+        }
+    }
+    
+    @IBOutlet weak var writingAudioSegmentedControl: UISegmentedControl!
+    @IBAction func writingAudioSegmentedControlTouched(_ sender: Any) {
+        
+        switch writingEnabled{
+        case true:
+            summaryTextView.isHidden = true
+            audioRecordButton.isHidden = false
+            recordAudioLabel.isHidden = false
+            writingEnabled = false
+        case false:
+            audioRecordButton.isHidden = true
+            recordAudioLabel.isHidden = true
+            summaryTextView.isHidden = false
+            writingEnabled = true
+        default:
+            break
+        }
+    }
+    
+    //Audio recording elements
+    var recordingSession : AVAudioSession!
+    var audioRecorder : AVAudioRecorder!
+    var settings = [String : Int]()
+    var recordingEnded = false
+    
+    //Data elements
     var completedActivityLog: CompletedActivityLog!
-    
-//    var recordButton: UIButton!
-//    var recordingSession: AVAudioSession!
-//    var audioRecorder: AVAudioRecorder!
-    
     var activityLogItem: ActivityLogItem!
     var participant : Participant!
-
-    
-    /*
-    @IBAction func negativeEmotionSelected(_ sender: Any) {
-        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .negative
-        // resize the icons based on selection
-        negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-        neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-    
-    }
-    
-    @IBAction func neutralEmotionSelected(_ sender: Any) {
-        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .neutral
-        // resize the icons based on selection
-        negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-        positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-    }
-   
-    @IBAction func positiveEmotionSelected(_ sender: Any) {
-        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        completedActivityLog.allCompletedActivities[thisLogItem].reaction = .positive
-        // resize the icons based on selection
-        negativeEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        neutralEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 28))
-        positiveEmotion.titleLabel?.font = (UIFont .systemFont(ofSize: 55))
-    }
- */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,31 +113,57 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         keyboardToolbar.items = [flexible, submitButton]
         summaryTextView.inputAccessoryView = keyboardToolbar
         
+        //Initially hide audio recording tool
+        audioRecordButton.isHidden = true
+        recordAudioLabel.isHidden = true
+        
+        //Set up audio recorder
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("Allow")
+                    } else {
+                        print("Dont Allow")
+                    }
+                }
+            }
+        } catch {
+            print("failed to record!")
+        }
+        
+        // Audio Settings
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("Allow")
+                    } else {
+                        print("Dont Allow")
+                    }
+                }
+            }
+        } catch {
+            print("failed to record!")
+        }
+        
+        // Audio Settings
+        settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
 
     }
-
-        //sound addition here//
-        
-//        recordingSession = AVAudioSession.sharedInstance()
-//        
-//        do {
-//            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-//            try recordingSession.setActive(true)
-//            recordingSession.requestRecordPermission() { [unowned self] allowed in
-//                DispatchQueue.main.async {
-//                    if allowed {
-//                        self.loadRecordingUI()
-//                    } else {
-//                        // failed to record!
-//                    }
-//                }
-//            }
-//        } catch {
-//            // failed to record!
-//        }
-//    }
-
     
+    //Functions dealing with how the UI should respond to editing beginning/ending in the textView
     func textViewDidBeginEditing(_ textView: UITextView) {
         if summaryTextView.textColor == UIColor.lightGray {
             summaryTextView.text = nil
@@ -120,6 +177,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
     }
     
+    //Not sure if the mailComposeViewController stuff is still required (don't think so)
     func configureMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
@@ -127,7 +185,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         mailComposerVC.setToRecipients(["julia.louw@nuigalway.ie"])
         mailComposerVC.setSubject("\(participant.name)'s Social Activity Report")
-        mailComposerVC.setMessageBody("Name: \(participant.name)\nEmail: \(participant.email ?? " ")\nParticipant code: \(participant.code)\n\nActivity: \(completedActivityLog.allCompletedActivities[thisLogItem].activityCode)\nComfort level: \(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10\nResponse: \(String(completedActivityLog.allCompletedActivities[thisLogItem].response!) ?? " ")\nDate completed: \(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? Date.init(timeIntervalSince1970: 1))", isHTML: false)
+        mailComposerVC.setMessageBody("Name: \(participant.name)\nEmail: \(participant.email ?? " ")\nParticipant code: \(participant.code)\n\nActivity: \(completedActivityLog.allCompletedActivities[thisLogItem].activityCode)\nComfort level: \(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10\nWritten Response: \(String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!) ?? " ")\nDate completed: \(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? "")", isHTML: false)
         return mailComposerVC
     }
     
@@ -150,56 +208,43 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*func submitReflection() {
-        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        completedActivityLog.allCompletedActivities[thisLogItem].response = summaryTextView.text
-        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
-        completedActivityLog.allCompletedActivities[thisLogItem].reaction = Int(slider.value)
-        if summaryTextView.text == "Type how you felt here..." {
-            completedActivityLog.allCompletedActivities[thisLogItem].response = nil
-        }
-        
-        let mailComposeViewController = configureMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
-        }
-        //self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
-        
-        //let success = completedActivityLog.saveChanges()
-        //if success {
-        print("Saved all of the items")
-        //}
-        //still have to make it so that this relfectionActivity is logged onto the server
-        
-        print(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted!)
-        print(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)
-        print(completedActivityLog.allCompletedActivities[thisLogItem].response ?? "N/A")
-    }*/
-    
+    //Function that prepares the completedActivityLog then performs the Post Url request with the JSON data
     func sendReflection() {
         
         //Update completedActivityLog
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        completedActivityLog.allCompletedActivities[thisLogItem].response = summaryTextView.text
-        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = Date()
-        completedActivityLog.allCompletedActivities[thisLogItem].reaction = Int(slider.value)
-        if summaryTextView.text == "Type how you felt here..." {
-            completedActivityLog.allCompletedActivities[thisLogItem].response = nil
+        completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse = summaryTextView.text
+        
+        if audioRecorder != nil {
+            completedActivityLog.allCompletedActivities[thisLogItem].audioResponse = audioRecorder.url
         }
         
-        // prepare json data
-        let json: [String: Any] = ["Name" : "David"] //["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].response!) ?? " ", "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? Date.init(timeIntervalSince1970: 1)]
+        let today = Date()
+        let d_format = DateFormatter()
+        d_format.dateFormat = "dd/MM/yyyy"
+        let date = d_format.string(from: today)
+        let time = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.none
+            , timeStyle: DateFormatter.Style.short)
+        
+        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = "\(date) at \(time)"
+        completedActivityLog.allCompletedActivities[thisLogItem].reaction = Int(slider.value)
+        if summaryTextView.text == "Type how you felt here..." {
+            completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse = nil
+        }
+        
+        //Prepare json data
+        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(describing: completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse), "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(describing: completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse), "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
+        
+        print(json)
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
-        // create post request
+        //Create post request
         let url = URL(string: "https://pgtest-01.musites.org/api/index.php?email=dchopin1@live.maryville.edu")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        // insert json data to the request
+        //Insert json data to the request
         request.httpBody = jsonData
         
         print(request.httpBody ?? "UGH")
@@ -219,14 +264,18 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
     }
     
+    //When the submitReflectionButton is pressed, sendReflection is called
     @IBAction func submitReflectionButtonPressed(_ sender: Any) {
-        //submitReflection()
+        playSound(sound: audioRecorder.url as NSURL)
         sendReflection()
     }
+    
+    //Allows the slider's label to update whenever the slider value changes
     @IBAction func sliderMoved(_ sender: Any) {
         sliderValue.text = String(Int(slider.value))
     }
     
+    //This function detects touches and whenever a touch is made outside of the summaryTextView, the keyboard is dismissed
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             if touch.location(in: view).x > summaryTextView.frame.maxX || touch.location(in: view).x < summaryTextView.frame.minX || touch.location(in: view).y > summaryTextView.frame.maxY || touch.location(in: view).y < summaryTextView.frame.minY || slider.frame.contains(touch.location(in: view)) {
@@ -237,6 +286,55 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
                 }
             }
         }
+    }
+    
+    //More functions helping the audio recording work
+    func directoryURL() -> NSURL? {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = urls[0] as NSURL
+        let soundURL = documentDirectory.appendingPathComponent("sound.m4a")
+        print(soundURL)
+        return soundURL as NSURL?
+    }
+    
+    func startRecording() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            audioRecorder = try AVAudioRecorder(url: getDocumentsDirectory().appendingPathComponent("recording.m4a"),
+                                                settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.prepareToRecord()
+        } catch {
+            finishRecording(success: false)
+        }
+        do {
+            try audioSession.setActive(true)
+            audioRecorder.record()
+        } catch {
+        }
+    }
+    
+    func finishRecording(success: Bool) {
+        audioRecorder.stop()
+        if success {
+            print(success)
+        } else {
+            audioRecorder = nil
+            print("Somthing Wrong.")
+        }
+    }
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if !flag {
+            finishRecording(success: false)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
 }
 
