@@ -17,7 +17,6 @@ class InstructionsViewController: UIViewController {
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var finishButton: UIButton!
     @IBOutlet weak var prevButton: UIBarButtonItem!
-
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
