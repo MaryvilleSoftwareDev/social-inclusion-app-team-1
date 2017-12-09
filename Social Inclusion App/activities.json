@@ -1,7 +1,7 @@
  [
   {
   "name":"Go Food Shopping",
-  "activityCode":"LI1",
+  "activityCode":"FS1",
   "description":"Shopping in your favorite grocery store is always fun! You need to have your shopping list of food items and your money with you, then you are ready to enjoy this experience! Have fun!",
   "category":"Do we need this?",
   "icon":"shopping-cart",
@@ -44,7 +44,7 @@
     {
 	 "title":"Greet your Server",
      "instructionCode":"ME1-S1",
-     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘server’ who will help you with your order – give them a friendly smile and say hello!",
+     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘server’ who will help you with your order – give them a friendly smile and say \"hello\"!",
 	 "socialSkill":"greeting",
 	 "socialSkillText":"Do you still remember how to ‘greet’ people you meet for the first time?",
     },

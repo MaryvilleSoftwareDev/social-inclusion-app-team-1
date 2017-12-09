@@ -40,7 +40,10 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
             self.recordAudioLabel.text = "Tap to stop recording"
             self.startRecording()
             playSound(sound: startSound)
-        } else {self.finishRecording(success: true)
+        } else {
+            self.finishRecording(success: true)
+            self.recordAudioLabel.text = "Recording complete"
+            playSound(sound: endSound)
             /*if recordingEnded == false {
                 self.recordAudioLabel.text = "Tap to record again"
                 self.finishRecording(success: true)
@@ -95,7 +98,11 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         summaryTextView.textColor = (UIColor.lightGray)
         
         summaryTextView.layer.borderWidth = 1
-        summaryTextView.layer.borderColor = UIColor.black.cgColor
+        if #available(iOS 10.0, *) {
+            summaryTextView.layer.borderColor = UIColor(displayP3Red: 0.340, green: 0.323, blue: 0.332, alpha: 1).cgColor
+        } else {
+            // Fallback on earlier versions
+        }
         
         summaryTextView.delegate = self
         
