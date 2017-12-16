@@ -15,16 +15,21 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     
     //Load audio player
     var audioPlayer = AVAudioPlayer()
-    var startSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "StartSound", ofType: "wav")!)
-    var endSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "EndSound", ofType: "wav")!)
-    func playSound(sound: NSURL) {
-        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        try! AVAudioSession.sharedInstance().setActive(true)
-        
-        try! audioPlayer = AVAudioPlayer(contentsOf: sound as URL)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+    func playSound(fileName: String, fileType: String){
+        // Fetch the Sound data set.
+        if let asset = NSDataAsset(name:fileName){
+            
+            do {
+                // Use NSDataAsset's data property to access the audio file stored in Sound.
+                player = try AVAudioPlayer(data:asset.data, fileTypeHint:fileType)
+                // Play the above sound file.
+                player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
     }
+    var player: AVAudioPlayer?
     
     //Storyboard elements
     @IBOutlet weak var summaryTextView: UITextView!
@@ -39,11 +44,11 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         if audioRecorder == nil {
             self.recordAudioLabel.text = "Tap to stop recording"
             self.startRecording()
-            playSound(sound: startSound)
+            playSound(fileName: "StartSound", fileType: "wav")
         } else {
             self.finishRecording(success: true)
             self.recordAudioLabel.text = "Recording complete"
-            playSound(sound: endSound)
+            playSound(fileName: "EndSound", fileType: "wav")
             /*if recordingEnded == false {
                 self.recordAudioLabel.text = "Tap to record again"
                 self.finishRecording(success: true)
@@ -62,6 +67,8 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     
     @IBOutlet weak var writingAudioSegmentedControl: UISegmentedControl!
     @IBAction func writingAudioSegmentedControlTouched(_ sender: Any) {
+        
+        self.view.endEditing(true)
         
         switch writingEnabled{
         case true:
@@ -114,9 +121,9 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         keyboardToolbar.barTintColor = UIColor.white
         
         let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(sendReflection)
+        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(submit)
         )
-        submitButton.tintColor = UIColor(red: 0, green: (122/255), blue: 1, alpha: 1)
+        submitButton.tintColor = UIColor(hue: 10, saturation: 10, brightness: 95, alpha: 1)
         keyboardToolbar.items = [flexible, submitButton]
         summaryTextView.inputAccessoryView = keyboardToolbar
         
@@ -174,7 +181,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
     func textViewDidBeginEditing(_ textView: UITextView) {
         if summaryTextView.textColor == UIColor.lightGray {
             summaryTextView.text = nil
-            summaryTextView.textColor = UIColor.black
+            summaryTextView.textColor = UIColor(hue: 232, saturation: 0, brightness: 82, alpha: 1)
     }
 }
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -182,37 +189,6 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
             summaryTextView.text = "Type how you felt here..."
             summaryTextView.textColor = (UIColor.lightGray)
         }
-    }
-    
-    //Not sure if the mailComposeViewController stuff is still required (don't think so)
-    func configureMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self
-        
-        let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
-        mailComposerVC.setToRecipients(["julia.louw@nuigalway.ie"])
-        mailComposerVC.setSubject("\(participant.name)'s Social Activity Report")
-        mailComposerVC.setMessageBody("Name: \(participant.name)\nEmail: \(participant.email ?? " ")\nParticipant code: \(participant.code)\n\nActivity: \(completedActivityLog.allCompletedActivities[thisLogItem].activityCode)\nComfort level: \(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10\nWritten Response: \(String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!) ?? " ")\nDate completed: \(completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted ?? "")", isHTML: false)
-        return mailComposerVC
-    }
-    
-    func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send this email. Please check your device's email configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-        sendMailErrorAlert.show()
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        switch result {
-        case MFMailComposeResult.cancelled:
-            print("Mail Cancelled")
-        case MFMailComposeResult.sent:
-            print("Mail Sent")
-            self.dismiss(animated: true, completion: nil)
-            self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
-        default:
-            break
-        }
-        self.dismiss(animated: true, completion: nil)
     }
     
     //Function that prepares the completedActivityLog then performs the Post Url request with the JSON data
@@ -240,7 +216,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
         
         //Prepare json data
-        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(describing: completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse), "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(describing: completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse), "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
+        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
         
         print(json)
         
@@ -268,13 +244,11 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
         
         task.resume()
-        self.navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
     }
     
     //When the submitReflectionButton is pressed, sendReflection is called
     @IBAction func submitReflectionButtonPressed(_ sender: Any) {
-        playSound(sound: audioRecorder.url as NSURL)
-        sendReflection()
+        submit()
     }
     
     //Allows the slider's label to update whenever the slider value changes
@@ -342,6 +316,15 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    func submit() {
+        self.sendReflection()
+        let submissionAlert = UIAlertController(title: "Thank you!", message: "Your reflection has been sent", preferredStyle: UIAlertControllerStyle.alert)
+        submissionAlert.addAction(UIAlertAction(title: "Back to activities", style: UIAlertActionStyle.default, handler: { ACTION in
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
+        }))
+        self.present(submissionAlert, animated: true, completion: nil)
     }
 }
 

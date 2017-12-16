@@ -17,7 +17,9 @@ class InstructionsViewController: UIViewController {
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var finishButton: UIButton!
     @IBOutlet weak var prevButton: UIBarButtonItem!
-    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var webView: UIWebView!
+    var youtubeID: String?
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
@@ -59,10 +61,14 @@ class InstructionsViewController: UIViewController {
         instructionsNavigationController.title = instructionActivity.name
         instructionStepTitle.text = instructionActivity.instructions[selectedInstruction].title
         if instructionActivity.instructions[selectedInstruction].socialSkill != nil {
-            socialSkillLabel.text = String("Social skill: \(instructionActivity.instructions[selectedInstruction].socialSkill!)")
+            if socialSkillLabel != nil {
+                socialSkillLabel.text = String("Social skill: \(instructionActivity.instructions[selectedInstruction].socialSkill!)")
+            }
         }
         socialSkillTextView.text = instructionActivity.instructions[selectedInstruction].socialSkillText
+            
         instructionsTextView.text = instructionActivity.instructions[selectedInstruction].details
+        youtubeID = instructionActivity.instructions[selectedInstruction].youtubeID
         
         // Change the button state if last instruction is displayed
         if selectedInstruction + 1 == instructionActivity.instructions.count {
@@ -77,9 +83,26 @@ class InstructionsViewController: UIViewController {
         
         if instructionActivity.instructions[selectedInstruction].socialSkillText == nil {
             socialSkillTextView.isHidden = true
-            socialSkillLabel.isHidden = true
+            if socialSkillLabel != nil {
+                socialSkillLabel.isHidden = true
+            }
         }
         //scrollViewHeight.constant = instructionStepTitle.frame.height + instructionsTextView.frame.height + socialSkillLabel.frame.height + socialSkillTextView.frame.height + finishButton.frame.height + 135
+        if instructionActivity.instructions[selectedInstruction].youtubeID != nil{
+            loadYoutube(videoID: youtubeID!)
+            print("Not nil")
+        } else {
+            if webView != nil {
+                webView.removeFromSuperview()
+            }
+        }
+        if instructionActivity.instructions[selectedInstruction].socialSkillText == nil {
+            if socialSkillLabel != nil && socialSkillTextView != nil {
+                socialSkillLabel.removeFromSuperview()
+                socialSkillTextView.removeFromSuperview()
+            }
+        }
+        webView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "loadingVideo"))
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -113,7 +136,7 @@ class InstructionsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func viewDidLayoutSubviews() {
+    /*override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         func setTextViewFrame(textView: UITextView) {
@@ -128,5 +151,13 @@ class InstructionsViewController: UIViewController {
         }
         setTextViewFrame(textView: instructionsTextView)
         setTextViewFrame(textView: socialSkillTextView)
+    }*/
+    
+    //function used in viewWillAppear that loads the youtube webview
+    func loadYoutube(videoID:String) {
+        guard
+            let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)")
+            else { return }
+        webView.loadRequest( URLRequest(url: youtubeURL) )
     }
 }

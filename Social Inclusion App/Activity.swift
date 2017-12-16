@@ -18,14 +18,16 @@ struct Instructions {
     var image:UIImage?
     var socialSkill:String?
     var socialSkillText:String?
+    var youtubeID:String?
     
-    init(title: String, instructionCode: String, details: String, image: UIImage?, socialSkill: String?, socialSkillText: String?){
+    init(title: String, instructionCode: String, details: String, image: UIImage?, socialSkill: String?, socialSkillText: String?, youtubeID: String?){
         self.title = title
         self.instructionCode = instructionCode
         self.details = details
         self.image = image
         self.socialSkill = socialSkill
         self.socialSkillText = socialSkillText
+        self.youtubeID = youtubeID
     }
     
     init(from dict: [String:Any?]) {
@@ -49,6 +51,12 @@ struct Instructions {
             self.socialSkillText = socialSkillTextString
         } else {
             self.socialSkillText = nil
+        }
+        
+        if let youtubeID = dict["youtubeID"] as? String {
+            self.youtubeID = youtubeID
+        } else {
+            self.youtubeID = nil
         }
         
     }
