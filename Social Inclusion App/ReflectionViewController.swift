@@ -8,9 +8,8 @@
 
 import UIKit
 import AVFoundation
-import MessageUI
 
-class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, MFMailComposeViewControllerDelegate  {
+class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate  {
     var writingEnabled = true
     
     //Load audio player
@@ -216,7 +215,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         }
         
         //Prepare json data
-        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
+        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse ?? "N/a"), "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
         
         print(json)
         

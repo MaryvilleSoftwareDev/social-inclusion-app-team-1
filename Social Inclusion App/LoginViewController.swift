@@ -13,21 +13,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     var completedActivityLog: CompletedActivityLog!
-    var participant = Participant.init(name: "David", email: "dchopin1@live.maryville.edu", code: "000000")
+    var participant : Participant?
     //This participant is only preset because we are currently skipping the login phase. Once the login screen is reimplemented, this participant variable should be optional and then set to whatever data corresponds to the code entered on the login page.
     
-    let listOfParticipants = [Participant(name: "David", email: "dchopin1@live.maryville.edu", code: "000001"), Participant(name: " ", email: nil, code: "000002"), Participant(name: " ", email: nil, code: "000003")]
+    let listOfParticipants = [Participant(name: "David", email: "dchopin1@live.maryville.edu", code: "000001"), Participant(name: "Mary", email: "mchopin@charter.net", code: "000002"), Participant(name: "George", email: "gchopin@cherwell.com", code: "000003")]
     
     var savedParticipantCode: Int?
     var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*print("code is: \(defaults.value(forKey: "savedParticipantCode")!)")
-        if defaults.value(forKey: "savedParticipantCode")! as! Int != 000000 {
-            codeTextField.text = String("\(defaults.value(forKey: "savedParticipantCode") as! NSInteger)")
-            print("Remembered")
-        }*/
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -38,9 +33,11 @@ class LoginViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        //The following line of code allows us to immediately segue to the activityviewcontroller so that we do not have to log in each time we are testing the application. Removing this line of code will require the tester/user to login with an active login code.
-        //performSegue(withIdentifier: "segueToActivities", sender: self)
+        if defaults.value(forKey: "savedParticipantCode") != nil {
+            print(defaults.value(forKey: "savedParticipantCode"))
+            codeTextField.text = String("\(defaults.value(forKey: "savedParticipantCode")!)")
+            print("Remembered")
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -61,18 +58,20 @@ class LoginViewController: UIViewController {
                 .code == codeTextField.text {
                 participant = thisParticipant
                 if rememberMeSwitch.isOn {
-                    defaults.set(participant.code, forKey: "savedParticipantCode")
+                    defaults.set(participant?.code, forKey: "savedParticipantCode")
+                    defaults.synchronize()
+                } else {
+                    defaults.set(nil, forKey: "savedParticipantCode")
                     defaults.synchronize()
                 }
                 let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
                 completedActivityLog.allCompletedActivities[thisLogItem].participantCode = codeTextField.text!
                 codeTextField.text = nil
                 performSegue(withIdentifier: "segueToActivities", sender: UIButton.self)
-            } else {
-                codeTextField.text = nil
-                codeTextField.placeholder = " Please try again"
             }
         }
+        codeTextField.text = nil
+        codeTextField.placeholder = " Please try again"
     }
     
     //Allows the user to press "Return" on keyboard to call the logIn function
