@@ -225,7 +225,7 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
         //Create post request
-        let url = URL(string: "https://pgtest-01.musites.org/api/index.php?email=dchopin1@live.maryville.edu")!
+        let url = URL(string: "https://pgtest-01.musites.org/api/index.php")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
