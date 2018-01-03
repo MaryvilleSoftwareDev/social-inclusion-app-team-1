@@ -220,19 +220,19 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         //Prepare json data
         let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)", "Written Response" : encodedResponse, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
         
-        print(json)
+        //print(json)
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
         //Create post request
-        let url = URL(string: "https://pgtest-01.musites.org/api/index.php")!
+        let url = URL(string: "https://pgtest-01.musites.org/api/social-inclusion/index.php")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
         //Insert json data to the request
         request.httpBody = jsonData
         
-        print(request.httpBody ?? "UGH")
+        //print(request.httpBody ?? "UGH")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
