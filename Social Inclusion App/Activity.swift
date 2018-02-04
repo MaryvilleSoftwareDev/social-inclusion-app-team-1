@@ -102,14 +102,22 @@ class Activity {
         
         // may consider adding this as a separate method
         let iconText = dict["icon"] as! String
-        if iconText == "coffee" {
-            self.icon = #imageLiteral(resourceName: "coffee")
-        } else if iconText == "shopping-cart" {
+        if iconText == "shopping-cart" {
             self.icon = #imageLiteral(resourceName: "shopping-cart")
+        } else if iconText == "game" {
+            self.icon = #imageLiteral(resourceName: "game")
         } else if iconText == "dog walk" {
             self.icon = #imageLiteral(resourceName: "dog walk")
-        } else if iconText == "church" {
-            self.icon = #imageLiteral(resourceName: "church")
+        } else if iconText == "movie" {
+            self.icon = #imageLiteral(resourceName: "movie")
+        } else if iconText == "music" {
+            self.icon = #imageLiteral(resourceName: "music")
+        } else if iconText == "exercise" {
+            self.icon = #imageLiteral(resourceName: "exercise")
+        } else if iconText == "park" {
+            self.icon = #imageLiteral(resourceName: "park")
+        } else if iconText == "coffee" {
+            self.icon = #imageLiteral(resourceName: "coffee")
         } else {
             self.icon = nil
         }

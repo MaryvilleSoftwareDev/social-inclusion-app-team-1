@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class InstructionsViewController: UIViewController {
     @IBOutlet weak var instructionsNavigationController: UINavigationItem!
@@ -18,7 +19,11 @@ class InstructionsViewController: UIViewController {
     @IBOutlet var finishButton: UIButton!
     @IBOutlet weak var prevButton: UIBarButtonItem!
     
+    @IBOutlet weak var skillVolumeButton: UIButton!
+    
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var youtubeID: String?
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
@@ -38,6 +43,9 @@ class InstructionsViewController: UIViewController {
     var completedActivityLog: CompletedActivityLog!
     var selectedInstruction: Int! = 0
     var participant : Participant!
+    
+    let speechSynthesizer = AVSpeechSynthesizer()
+    var utterance: AVSpeechUtterance?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -102,7 +110,13 @@ class InstructionsViewController: UIViewController {
                 socialSkillTextView.removeFromSuperview()
             }
         }
-        webView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "loadingVideo"))
+        if instructionActivity.instructions[selectedInstruction].youtubeID != nil {
+            webView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "loadingVideo"))
+        }
+        
+        if instructionActivity.instructions[selectedInstruction].socialSkillText == " " {
+            skillVolumeButton.removeFromSuperview()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -128,7 +142,9 @@ class InstructionsViewController: UIViewController {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
         completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].convertDatesToUnix(start: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].startTime!, stop: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime!)
-}
+        
+        speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+    }
     @IBAction func prevButtonSelected(_ sender: Any) {
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
@@ -136,28 +152,29 @@ class InstructionsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    /*override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        func setTextViewFrame(textView: UITextView) {
-            let contentSize = textView.sizeThatFits(textView.bounds.size)
-            var frame = textView.frame
-            frame.size.height = contentSize.height
-            textView.frame = frame
-            
-            let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
-            
-            textView.addConstraint(aspectRatioTextViewConstraint)
-        }
-        setTextViewFrame(textView: instructionsTextView)
-        setTextViewFrame(textView: socialSkillTextView)
-    }*/
-    
     //function used in viewWillAppear that loads the youtube webview
     func loadYoutube(videoID:String) {
         guard
             let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)")
             else { return }
         webView.loadRequest( URLRequest(url: youtubeURL) )
+    }
+    
+    @IBAction func instructionVolumeButtonPressed(_ sender: Any) {
+        utterance = AVSpeechUtterance(string: "\(instructionActivity.instructions[selectedInstruction].details)")
+        utterance?.voice = AVSpeechSynthesisVoice(identifier: "en-GB")
+        speechSynthesizer.speak(utterance!)
+        if speechSynthesizer.isSpeaking {
+            speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+        }
+    }
+    
+    @IBAction func skillVolumeButtonPressed(_ sender: Any) {
+        utterance = AVSpeechUtterance(string: "\(instructionActivity.instructions[selectedInstruction].socialSkillText ?? " ")")
+        utterance?.voice = AVSpeechSynthesisVoice(identifier: "en-GB")
+        speechSynthesizer.speak(utterance!)
+        if speechSynthesizer.isSpeaking {
+            speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+        }
     }
 }

@@ -2,19 +2,19 @@
   {
   "name":"Go Food Shopping",
   "activityCode":"FS1",
-  "description":"Shopping in your favorite grocery store is always fun! You need to have your shopping list of food items and your money with you, then you are ready to enjoy this experience! Have fun!",
+  "description":"You need a shopping list and money!",
   "category":"Do we need this?",
   "icon":"shopping-cart",
   "instructions":
   [
    {
    "title":"Enter the Store",
-   "instructionCode":"LI1-S1",
+   "instructionCode":"FS1-S1",
    "details":"When you enter the store, you will see a number of rows/isles with lots of food items: first check to see the name of each row/isle so you can begin to look for your first item on your shopping list. Also, take a basket to put in all your items.",
    },
    {
    "title":"Ask for Help from a Staff Member",
-   "instructionCode":"LI1-S2",
+   "instructionCode":"FS1-S2",
    "details":"In the store, you will see many other shoppers like yourself, and the staff working in the store. They are there to help you! If you need any help, please go to a staff member and ask for help. Remember to first give them a friendly smile and say hello!",
    "socialSkill":"Keeping good eye-contact",
    "socialSkillText":"Keeping good eye contact communicates that you are interested and engaged in the conversation.",
@@ -22,7 +22,7 @@
    },
    {
    "title":"Use Good Speaking Skills with Staff Member",
-   "instructionCode":"LI1-S3",
+   "instructionCode":"FS1-S3",
    "details":"The staff member will explain to you in which isle to find your food items if you struggle to find it yourself. When the staff member is explaining to you what to do next to find your food/ shopping item, make sure that you listen well to the explanation.",
    "socialSkill":"Listening",
    "socialSkillText":"It is important to listen closely to the information provided by the staff member, it can often times seem easy to forget. Using good volume will show that you are comfortable and will ensure that the staff member hears you clearly.",
@@ -30,42 +30,44 @@
    },
    {
    "title":"Check Out Your Items",
-   "instructionCode":"LI1-S4",
-   "details":"When you have find all your items, you will need to find a check point where you will pay for your items. When you are at the check point, remember to ask how much money your items cost and hand the money to the cashier."
+   "instructionCode":"FS1-S4",
+   "details":"When you have found all of your items, you will need to find a check point where you will pay for your items. When you are at the check point, remember to ask how much money your items cost and hand the money to the cashier."
    }
    ]
   },
  {
-  "name":"Ordering a Meal",
-  "activityCode":"ME1",
-  "description":"Visiting your favorite restaurant or café is always fun. Most times your family or friends will go with you to enjoy a meal or a piece of cake.",
+  "name":"Learn a Sport or Game",
+  "activityCode":"SP1",
+  "description":"You need sports clothes and shoes. For a new game, you will need the rules of the game.",
   "category":"Do we need this?",
-  "icon":"coffee",
+  "icon":"game",
   "instructions":
   [
     {
-	 "title":"Greet your Server",
-     "instructionCode":"ME1-S1",
-     "details":"When entering a restaurant or café, you will be welcomed by a person called a ‘server’ who will help you with your order – give them a friendly smile and say \"hello\"!",
-	 "socialSkill":"greeting",
-	 "socialSkillText":"Do you still remember how to ‘greet’ people you meet for the first time?",
+	 "title":"Make Preparations",
+     "instructionCode":"SP1-S1",
+     "details":"Put on your sport clothes and find a group or a coach that will help you learn the sport. For the new game, make sure you have all materials and a safe space to play."
     },
 	{
-	 "title":"Decide what to order",
-     "instructionCode":"ME1-S2",
-     "details":"On the table you will find a list of all your favorite foods, this is called a menu – choose which meal you would like to order and tell the waiter your choice. Remember to thank the waiter after they bring your meal.",
+   "title":"Remember to be Sportsmanlike",
+     "instructionCode":"SP1-S2",
+     "details":"Remember to enjoy the sport and make sure to follow the rules of the game.",
+   "socialSkill":"Good Sportsmanship",
+   "socialSkillText":"Being a good sport is essential to ensuring everybody has a good time.",
+   "youtubeID":"P_HQ4drWEUs"
 	},
 	{
-	 "title":"Enjoy your meal",
-     "instructionCode":"ME1-S3",
-     "details":"Enjoy your lovely meal and when your family or friends are having good conversation at the table make sure to listen well.",
-	 "socialSkill":"listening",
-	 "socialSkillText":"Do you still remember how to ‘listen’ when enjoying good conversation",	
+	 "title":"Remember to use an Appropriate Level of Competitiveness",
+     "instructionCode":"SP1-S3",
+     "details":"When you play the sport or game do not become too competitive with your friends or else you will not enjoy it.",
+	 "socialSkill":"Good Sportsmanship",
+	 "socialSkillText":"Utilizing an appropriate level of competitiveness will ensure that feelings don't spoil the fun, all while keeping the game engaging.",
+   "youtubeID":"w7_WLRpiuII"
 	},
 	{
-	 "title":"Pay the bill",
-     "instructionCode":"ME1-S4",
-     "details":"When you are done, remember to pay for the meal – ask the waiter to bring you the bill or ask how much your meal cost.",
+	 "title":"Show Your Appreciation Towards Those Involved",
+     "instructionCode":"SP1-S4",
+     "details":"At the end, thank your coach and everyone else who played with you.",
 	}
   ]
  },
@@ -78,63 +80,211 @@
   "instructions":
   [
     {
-	 "title":"Step 1",
+	 "title":"Harness Leash to Dog",
      "instructionCode":"WD1-S1",
-     "details":"Instruction details",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",
+     "details":"Make sure that your leash is correctly fastened to your dog's collar.",
     },
 	{
-	 "title":"Step 2",
+	 "title":"Be Ready to Initiate Conversation with Others",
      "instructionCode":"WD1-S2",
-     "details":"Instruction details with no social skill",
+     "details":"While walking your dog, other people will be interested to talk to you or you may begin conversation with others.",
+   "socialSkill":"Starting Individual Conversation",
+   "socialSkillText":" ",
+   "youtubeID":"oGKpxr4LwyU"
 	},
 	{
-	 "title":"Step 3",
+	 "title":"Be Careful While Walking and Try to Engage in Conversation with Others",
      "instructionCode":"WD1-S3",
-     "details":"Instruction details",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",	
+     "details":"Be careful not to walk in the street but stay on the sidewalk while walking your dog. Enjoy greeting and talking to other dog walkers. Below is an example of poorly initiated conversation.",
+	 "socialSkill":"Starting Individual Conversation",
+   "socialSkillText":" ",
+	 "youtubeID":"9ZKm6iT-uSg",
 	},
 	{
-	 "title":"Step 4",
+	 "title":"Returning Home With Your Dog",
      "instructionCode":"WD1-S4",
-     "details":"Instruction details with no social skill",
+     "details":"Remove your dog’s leash when you are done walking and remember to give your dog water.",
 	}
   ]
  },
  {
- "name":"Go To Chruch",
-  "activityCode":"GC1",
-  "description":"You will go to church",
+ "name":"Get Together for Movies",
+  "activityCode":"MV1",
+  "description":"You need a group of friends or family and a nice movie to watch.",
   "category":"Do we need this?",
-  "icon":"church",
+  "icon":"movie",
   "instructions":
   [
     {
-	 "title":"Step 1",
-     "instructionCode":"GC1-S1",
-     "details":"Instruction details",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",
+	 "title":"Find a Place to Watch",
+     "instructionCode":"MV1-S1",
+     "details":"Decide where you will watch the movie together as a group.",
     },
 	{
-	 "title":"Step 2",
-     "instructionCode":"GC1-S2",
-     "details":"Instruction details with no social skill",
+	 "title":"If Applicable, be a Good Host",
+     "instructionCode":"MV1-S2",
+     "details":"If friends are watching the movie at your house, please welcome them and make them feel at home.",
+   "socialSkill":"Get-togethers",
+   "socialSkillText":" ",
+   "youtubeID":"HYBB-E9E8zs"
 	},
 	{
-	 "title":"Step 3",
-     "instructionCode":"GC1-S3",
-     "details":"Instruction details",
-	 "socialSkill":"skill",
-	 "socialSkillText":"Describe how the skill applies",	
+	 "title":"Provide Refreshments for Guests",
+     "instructionCode":"MV1-S3",
+     "details":"Make sure you have lots of popcorn and soft drinks for everyone and enjoy the movie. Below is an example of being a bad host.",
+	 "socialSkill":"Get-togethers",
+	 "socialSkillText":" ",
+   "youtubeID":"umg-6cL4bRA"
 	},
 	{
-	 "title":"Step 4",
-     "instructionCode":"GC1-S4",
-     "details":"Instruction details with no social skill",
+	 "title":"Afterwards, Thank Your Guests for Attending",
+     "instructionCode":"MV1-S4",
+     "details":"When the movie is done, thank everyone for coming to house to enjoy the movie.",
 	}
   ]
- }
+ },
+  {
+  "name":"Play or Listen to Music",
+  "activityCode":"MU1",
+  "description":"You need a musical instrument to learn how to play it or a radio or CD player to listen to music.",
+  "category":"Do we need this?",
+  "icon":"music",
+  "instructions":
+  [
+   {
+   "title":"Use Good Listening Skills",
+   "instructionCode":"MU1-S1",
+   "details":"If you are in lessons for a musical instrument, listen to the music teacher well. If you are simply listening to music on the radio or CD player, make sure the volume is not too loud.",
+   },
+   {
+   "title":"Exchanging Contact Info",
+   "instructionCode":"MU1-S2",
+   "details":"Sometimes your music teacher may ask for your contact details to call you for your next session. Or, someone may ask your details to send you new songs.",
+   "socialSkill":"Exchanging Contact Information",
+   "socialSkillText":" ",
+   "youtubeID":"z5rIAetolzk"
+   },
+   {
+   "title":"Remember to be Careful When Exchanging Info",
+   "instructionCode":"MU1-S3",
+   "details":"Be careful with giving out your contact information. The below video depicts a poor example of exchanging contact information.",
+   "socialSkill":"Exchanging Contact Information",
+   "socialSkillText":" ",
+   "youtubeID":"vSlvTxnpIaM"
+   },
+   {
+   "title":"Enjoy Your Music!",
+   "instructionCode":"MU1-S4",
+   "details":"Make sure to practice your new instrument or enjoy listening to your favourite songs.",
+   }
+   ]
+  },
+  {
+  "name":"Enjoy Exercise With Friends",
+  "activityCode":"EX1",
+  "description":"You need to join a gym or group that exercise regularly.",
+  "category":"Do we need this?",
+  "icon":"exercise",
+  "instructions":
+  [
+   {
+   "title":"Find a Group to Exercise With and Wear Appropriate Attire",
+   "instructionCode":"EX1-S1",
+   "details":"Look out for groups that exercise together and get comfortable clothes and shoes ready.",
+   },
+   {
+   "title":"Engage in Conversation Before or After the Session",
+   "instructionCode":"EX1-S2",
+   "details":"Before you start the exercise or after your session, join the group for a chat.",
+   "socialSkill":"Entering a Group Conversation",
+   "socialSkillText":" ",
+   "youtubeID":"A1-EUEnOex4"
+   },
+   {
+   "title":"Enjoy the Company of Others",
+   "instructionCode":"EX1-S3",
+   "details":"Be friendly with all group members and enjoy their company. The video below depicts how not to behave in group conversations.",
+   "socialSkill":"Entering a Group Conversation",
+   "socialSkillText":" ",
+   "youtubeID":"inZORCtOOes"
+   },
+   {
+   "title":"Take Care of Yourself Following Your Activity",
+   "instructionCode":"EX1-S4",
+   "details":"After your exercise, take a shower and drinks lost of water to stay healthy.",
+   }
+   ]
+  },
+  {
+  "name":"Go for a Walk in the Park",
+  "activityCode":"PK1",
+  "description":"You need a group of friends or family and a nice movie to watch.",
+  "category":"Do we need this?",
+  "icon":"park",
+  "instructions":
+  [
+   {
+   "title":"Find a Place to Watch",
+   "instructionCode":"PK1-S1",
+   "details":"Only go for a walk when it is daytime and ask someone to join you.",
+   },
+   {
+   "title":"Be Ready to Converse with Others",
+   "instructionCode":"PK1-S2",
+   "details":"You will find many people who also go out for walks and you may have a few conversations with them.",
+   "socialSkill":"Trading Information",
+   "socialSkillText":" ",
+   "youtubeID":"LHN-y6rsLrY"
+   },
+   {
+   "title":"Be Open to Making Friends",
+   "instructionCode":"PK1-S3",
+   "details":"Take a rest and sit on a bench when you get tired. Don’t be shy to make new friends while you outside in the Park.",
+   "socialSkill":"Trading Information",
+   "socialSkillText":" ",
+   "youtubeID":"BN2DocilWHM"
+   },
+   {
+   "title":"Return From Your Walk",
+   "instructionCode":"PK1-S4",
+   "details":"You will fell refreshed once you’ve completed your walk.",
+   }
+   ]
+  },
+  {
+  "name":"Visit a Restaurant or Coffee Shop",
+  "activityCode":"CS1",
+  "description":"You need your money and dress up nicely for your outing.",
+  "category":"Do we need this?",
+  "icon":"coffee",
+  "instructions":
+  [
+   {
+   "title":"Enter the Restaurant or Coffee Shop",
+   "instructionCode":"CS1-S1",
+   "details":"After finding a place to go, enter the restaurant or coffee shop and find a nice table to sit at.",
+   },
+   {
+   "title":"Place Order and Converse with Staff",
+   "instructionCode":"CS1-S2",
+   "details":"Ask a staff waiter for the menu and place your order. If the waiter tries to make a joke with you, be polite even if you do not find the joke funny at all.",
+   "socialSkill":"Appropriate Use of Humor",
+   "socialSkillText":"Below is an example of how NOT to give a courtesy laugh.",
+   "youtubeID":"Xwv-lwMIgBk"
+   },
+   {
+   "title":"Be Engaging and Polite with the Staff",
+   "instructionCode":"CS1-S3",
+   "details":"Always smile and be kind to the waiter when he or she offers to help or check that you enjoy your meal or coffee.",
+   "socialSkill":"Appropriate Use of Humor",
+   "socialSkillText":"Below is an example of how to correctly give a courtesy laugh.",
+   "youtubeID":"xgfLlLYhbHU"
+   },
+   {
+   "title":"Pay Your Bill and Leave the Restaurant",
+   "instructionCode":"CS1-S4",
+   "details":"Pay your bill before you leave and politely thank the waiter for the service.",
+   }
+   ]
+  }
 ]
