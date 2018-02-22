@@ -112,17 +112,17 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
         
         
         //Create keyboard toolbar button for submitting reflection
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        keyboardToolbar.isTranslucent = false
-        keyboardToolbar.barTintColor = UIColor.white
-        
-        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(submit)
-        )
-        submitButton.tintColor = UIColor(hue: 10, saturation: 10, brightness: 95, alpha: 1)
-        keyboardToolbar.items = [flexible, submitButton]
-        summaryTextView.inputAccessoryView = keyboardToolbar
+//        let keyboardToolbar = UIToolbar()
+//        keyboardToolbar.sizeToFit()
+//        keyboardToolbar.isTranslucent = false
+//        keyboardToolbar.barTintColor = UIColor.white
+//
+//        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+//        let submitButton = UIBarButtonItem(title: "Submit Reflection", style: .done, target: self, action: #selector(submit)
+//        )
+//        submitButton.tintColor = UIColor(hue: 10, saturation: 10, brightness: 95, alpha: 1)
+//        keyboardToolbar.items = [flexible, submitButton]
+//        summaryTextView.inputAccessoryView = keyboardToolbar
         
         //Initially hide audio recording tool
         audioRecordButton.isHidden = true
@@ -212,8 +212,11 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
             completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse = nil
         }
         
+        let response = String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse ?? "Not Provided" )!
+        let encodedResponse = response.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        
         //Prepare json data
-        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse ?? "N/a"), "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
+        let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)", "Written Response" : encodedResponse, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]//["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Comfort level" : "\(completedActivityLog.allCompletedActivities[thisLogItem].reaction!)/10", "Written Response" : String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse!)!, "Audio Response" : completedActivityLog.allCompletedActivities[thisLogItem].audioResponse as Any, "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
         
         print(json)
         
