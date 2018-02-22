@@ -10,12 +10,12 @@
    {
    "title":"Enter the Store",
    "instructionCode":"FS1-S1",
-   "details":"When you enter the store, you will see a number of rows/isles with lots of food items: first check to see the name of each row/isle so you can begin to look for your first item on your shopping list. Also, take a basket to put in all your items.",
+   "details":"When you enter the store, take a basket to put all of your food items in.",
    },
    {
    "title":"Ask for Help from a Staff Member",
    "instructionCode":"FS1-S2",
-   "details":"In the store, you will see many other shoppers like yourself, and the staff working in the store. They are there to help you! If you need any help, please go to a staff member and ask for help. Remember to first give them a friendly smile and say hello!",
+   "details":"If you need any help, be sure to ask a staff member. Give them a friendly Smile and say 'Hello!'",
    "socialSkill":"Keeping good eye-contact",
    "socialSkillText":"Keeping good eye contact communicates that you are interested and engaged in the conversation.",
     "youtubeID":"IV9jB0f590U",
@@ -23,7 +23,7 @@
    {
    "title":"Use Good Speaking Skills with Staff Member",
    "instructionCode":"FS1-S3",
-   "details":"The staff member will explain to you in which isle to find your food items if you struggle to find it yourself. When the staff member is explaining to you what to do next to find your food/ shopping item, make sure that you listen well to the explanation.",
+   "details":"Make sure that you listen well to what the staff member explains. When conversing with the staff member, be sure to speak loudly and clearly.",
    "socialSkill":"Listening",
    "socialSkillText":"It is important to listen closely to the information provided by the staff member, it can often times seem easy to forget. Using good volume will show that you are comfortable and will ensure that the staff member hears you clearly.",
    "youtubeID":"ulFFTKuJI-g",
@@ -31,7 +31,7 @@
    {
    "title":"Check Out Your Items",
    "instructionCode":"FS1-S4",
-   "details":"When you have found all of your items, you will need to find a check point where you will pay for your items. When you are at the check point, remember to ask how much money your items cost and hand the money to the cashier."
+   "details":"When you are finished shopping, pay for your items at the checkout counter."
    }
    ]
   },

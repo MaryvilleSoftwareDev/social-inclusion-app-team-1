@@ -80,8 +80,6 @@ class ReflectionViewController: UIViewController, UITextViewDelegate, AVAudioRec
             recordAudioLabel.isHidden = true
             summaryTextView.isHidden = false
             writingEnabled = true
-        default:
-            break
         }
     }
     

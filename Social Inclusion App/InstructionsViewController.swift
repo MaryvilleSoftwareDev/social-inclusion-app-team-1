@@ -28,14 +28,22 @@ class InstructionsViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+        
+        let newReflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewReflection") as! NewReflectionViewController
        
         let thisLogItem = completedActivityLog.allCompletedActivities.count - 1
         
         let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
         completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
+        
         reflectionViewController.completedActivityLog = self.completedActivityLog
         reflectionViewController.participant = self.participant
-        self.navigationController?.pushViewController(reflectionViewController, animated: true)
+        
+        newReflectionViewController.completedActivityLog = self.completedActivityLog
+        newReflectionViewController.participant = self.participant
+       
+       //Change the following line to ' self.navigationController?.pushViewController(reflectionViewController, animated: true) ' to change reflection view controllers
+        self.navigationController?.pushViewController(newReflectionViewController, animated: true)
         completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].convertDatesToUnix(start: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].startTime!, stop: completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime!)
     }
     
@@ -128,10 +136,17 @@ class InstructionsViewController: UIViewController {
         let thisTimer = completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer.count - 1
         if selectedInstruction + 1 == instructionActivity.instructions.count {
             let reflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reflection") as! ReflectionViewController
+            let newReflectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewReflection") as! NewReflectionViewController
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
+            
             reflectionViewController.completedActivityLog = self.completedActivityLog
             reflectionViewController.participant = self.participant
-            self.navigationController?.pushViewController(reflectionViewController, animated: true)
+            
+            newReflectionViewController.completedActivityLog = self.completedActivityLog
+            newReflectionViewController.participant = self.participant
+           
+            //Change the following line to ' self.navigationController?.pushViewController(reflectionViewController, animated: true) ' to change reflection view controllers
+            self.navigationController?.pushViewController(newReflectionViewController, animated: true)
         } else {
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Instructions") as! InstructionsViewController
             completedActivityLog.allCompletedActivities[thisLogItem].instructionTimer[thisTimer].stopTime = Date()
