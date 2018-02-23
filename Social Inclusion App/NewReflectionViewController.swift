@@ -25,13 +25,85 @@ class NewReflectionViewController: UIViewController, UITextViewDelegate, AVAudio
     var Q3Response: String?
     var Q4Response: String?
     
+    var Q1AudioResponse: URL?
+    var Q2AudioResponse: URL?
+    var Q3AudioResponse: URL?
+    var Q4AudioResponse: URL?
+    
+    //Audio recording elements
+    var player: AVAudioPlayer?
+    var recordingSession : AVAudioSession!
+    var audioRecorder : AVAudioRecorder!
+    var settings = [String : Int]()
+    var recordingEnded = false
+    
+    func setUpRecorder() {
+        //Set up audio recorder
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("Allow")
+                    } else {
+                        print("Dont Allow")
+                    }
+                }
+            }
+        } catch {
+            print("failed to record!")
+        }
+        
+        // Audio Settings
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("Allow")
+                    } else {
+                        print("Dont Allow")
+                    }
+                }
+            }
+        } catch {
+            print("failed to record!")
+        }
+        
+        // Audio Settings
+        settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+    }
+    
     override func viewDidLoad() {
         scrollView.contentSize = CGSize(width: self.accessibilityFrame.width, height: 20000)
         
         thisLogItem = completedActivityLog.allCompletedActivities.count - 1
+        
+        setUpRecorder()
     }
     
     @IBAction func submitReflectionButtonPressed(_ sender: Any) {
+        
+        let today = Date()
+        let d_format = DateFormatter()
+        d_format.dateFormat = "dd/MM/yyyy"
+        let date = d_format.string(from: today)
+        let time = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.none
+            , timeStyle: DateFormatter.Style.short)
+        
+        completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted = "\(date) at \(time)"
+        
+        let response = String(completedActivityLog.allCompletedActivities[thisLogItem].writtenResponse ?? "Not Provided" )!
+        let encodedResponse = response.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
         //Do the JSON stuff
         let json: [String: Any] = ["Name" : participant.name, "Email" : participant.email ?? " ", "Participant code" : participant.code, "Activity" : completedActivityLog.allCompletedActivities[thisLogItem].activityCode, "Q1 Response" : Q1Response ?? "N/a", "Q2 Response" : Q2Response ?? "N/a", "Q3 Response" : Q3Response ?? "N/a", "Q4 Response" : Q4Response ?? "N/a", "Time of completion" : completedActivityLog.allCompletedActivities[thisLogItem].dateCompleted as Any]
@@ -91,6 +163,20 @@ class NewReflectionViewController: UIViewController, UITextViewDelegate, AVAudio
     @IBOutlet weak var D1Button: UIButton!
     @IBOutlet weak var D2Button: UIButton!
     @IBOutlet weak var D3Button: UIButton!
+    
+    @IBOutlet weak var R1Button: UIButton!
+    @IBOutlet weak var R2Button: UIButton!
+    @IBOutlet weak var R3Button: UIButton!
+    @IBOutlet weak var R4Button: UIButton!
+    @IBOutlet weak var R1Label: UILabel!
+    @IBOutlet weak var R2Label: UILabel!
+    @IBOutlet weak var R3Label: UILabel!
+    @IBOutlet weak var R4Label: UILabel!
+    var R1Recording = false
+    var R2Recording = false
+    var R3Recording = false
+    var R4Recording = false
+    
     
     @IBAction func buttonPressed(_ sender: AnyObject) {
         switch sender as! UIButton {
@@ -164,5 +250,218 @@ class NewReflectionViewController: UIViewController, UITextViewDelegate, AVAudio
         }
     }
     
+    //More functions helping the audio recording work
+    func directoryURL() -> NSURL? {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = urls[0] as NSURL
+        let soundURL = documentDirectory.appendingPathComponent("sound.m4a")
+        print(soundURL)
+        return soundURL as NSURL?
+    }
+    
+    func startRecording() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            audioRecorder = try AVAudioRecorder(url: getDocumentsDirectory().appendingPathComponent("recording.m4a"),
+                                                settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.prepareToRecord()
+        } catch {
+            finishRecording(success: false)
+        }
+        do {
+            try audioSession.setActive(true)
+            audioRecorder.record()
+        } catch {
+        }
+    }
+    
+    func finishRecording(success: Bool) {
+        audioRecorder.stop()
+        if success {
+            print(success)
+            
+            if R1Recording {
+                Q1AudioResponse = audioRecorder.url
+                print(Q1AudioResponse)
+            } else if R2Recording {
+                Q2AudioResponse = audioRecorder.url
+                print(Q2AudioResponse)
+            } else if R3Recording {
+                Q3AudioResponse = audioRecorder.url
+                print(Q3AudioResponse)
+            } else if R4Recording {
+                Q4AudioResponse = audioRecorder.url
+                print(Q4AudioResponse)
+            }
+            
+        } else {
+            audioRecorder = nil
+            print("Somthing Wrong.")
+        }
+    }
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if !flag {
+            finishRecording(success: false)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    //Load audio player
+    var audioPlayer = AVAudioPlayer()
+    func playSound(fileName: String, fileType: String){
+        // Fetch the Sound data set.
+        if let asset = NSDataAsset(name:fileName){
+            
+            do {
+                // Use NSDataAsset's data property to access the audio file stored in Sound.
+                player = try AVAudioPlayer(data:asset.data, fileTypeHint:fileType)
+                // Play the above sound file.
+                player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    @IBAction func recordButtonPressed(_ sender: AnyObject) {
+        
+        switch sender as! UIButton {
+       
+        case R1Button:
+            if R1Button.imageView?.image == UIImage(named:"RecordButton") {
+                R1Button.setImage(UIImage(named: "StopButton"), for: .normal)
+                self.startRecording()
+                playSound(fileName: "StartSound", fileType: "wav")
+                R1Label.text = "Stop Recording"
+                R1Recording = true
+            } else {
+                R1Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                self.finishRecording(success: true)
+                playSound(fileName: "EndSound", fileType: "wav")
+                R1Label.text = "Record Audio"
+                R1Recording = false
+            }
+            
+            if R2Button.imageView?.image == UIImage(named:"StopButton") {
+                R2Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R2Label.text = "Record Audio"
+                R2Recording = false
+            }
+            if R3Button.imageView?.image == UIImage(named:"StopButton") {
+                R3Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R3Label.text = "Record Audio"
+                R3Recording = false
+            }
+            if R4Button.imageView?.image == UIImage(named:"StopButton") {
+                R4Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R4Label.text = "Record Audio"
+                R4Recording = false
+            }
+            
+        case R2Button:
+            if R2Button.imageView?.image == UIImage(named:"RecordButton") {
+                R2Button.setImage(UIImage(named: "StopButton"), for: .normal)
+                self.startRecording()
+                playSound(fileName: "StartSound", fileType: "wav")
+                R2Label.text = "Stop Recording"
+                R2Recording = true
+            } else {
+                R2Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                self.finishRecording(success: true)
+                playSound(fileName: "EndSound", fileType: "wav")
+                R2Label.text = "Record Audio"
+                R2Recording = false
+            }
+            
+            if R1Button.imageView?.image == UIImage(named:"StopButton") {
+                R1Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R1Label.text = "Record Audio"
+                R1Recording = false
+            }
+            if R3Button.imageView?.image == UIImage(named:"StopButton") {
+                R3Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R3Label.text = "Record Audio"
+                R3Recording = false
+            }
+            if R4Button.imageView?.image == UIImage(named:"StopButton") {
+                R4Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R4Label.text = "Record Audio"
+                R4Recording = false
+            }
+            
+        case R3Button:
+            if R3Button.imageView?.image == UIImage(named:"RecordButton") {
+                R3Button.setImage(UIImage(named: "StopButton"), for: .normal)
+                self.startRecording()
+                playSound(fileName: "StartSound", fileType: "wav")
+                R3Label.text = "Stop Recording"
+                R3Recording = true
+            } else {
+                R3Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                self.finishRecording(success: true)
+                playSound(fileName: "EndSound", fileType: "wav")
+                R3Label.text = "Record Audio"
+                R3Recording = false
+            }
+            
+            if R1Button.imageView?.image == UIImage(named:"StopButton") {
+                R1Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R1Label.text = "Record Audio"
+                R1Recording = false
+            }
+            if R2Button.imageView?.image == UIImage(named:"StopButton") {
+                R2Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R2Label.text = "Record Audio"
+                R2Recording = false
+            }
+            if R4Button.imageView?.image == UIImage(named:"StopButton") {
+                R4Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R4Label.text = "Record Audio"
+                R4Recording = false
+            }
+            
+        case R4Button:
+            if R4Button.imageView?.image == UIImage(named:"RecordButton") {
+                R4Button.setImage(UIImage(named: "StopButton"), for: .normal)
+                self.startRecording()
+                playSound(fileName: "StartSound", fileType: "wav")
+                R4Label.text = "Stop Recording"
+                R4Recording = true
+            } else {
+                R4Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                self.finishRecording(success: true)
+                playSound(fileName: "EndSound", fileType: "wav")
+                R4Label.text = "Record Audio"
+                R4Recording = false
+            }
+            
+            if R1Button.imageView?.image == UIImage(named:"StopButton") {
+                R1Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R1Label.text = "Record Audio"
+                R1Recording = true
+            }
+            if R2Button.imageView?.image == UIImage(named:"StopButton") {
+                R2Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R2Label.text = "Record Audio"
+                R2Recording = false
+            }
+            if R3Button.imageView?.image == UIImage(named:"StopButton") {
+                R3Button.setImage(UIImage(named: "RecordButton"), for: .normal)
+                R3Label.text = "Record Audio"
+                R3Recording = false
+            }
+            
+        default:
+            break
+        }
+    }
     
 }

@@ -123,7 +123,9 @@ class InstructionsViewController: UIViewController {
         }
         
         if instructionActivity.instructions[selectedInstruction].socialSkillText == " " {
-            skillVolumeButton.removeFromSuperview()
+            if skillVolumeButton != nil {
+              skillVolumeButton.removeFromSuperview()
+            }
         }
     }
     
