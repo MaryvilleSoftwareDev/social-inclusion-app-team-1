@@ -112,12 +112,12 @@ class NewReflectionViewController: UIViewController, UITextViewDelegate, AVAudio
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
-        //Create post request
-        let url = URL(string: "https://pgtest-01.musites.org/api/index.php?email=dchopin1@live.maryville.edu")!
+        // create post request
+        let url = URL(string: "http://pgtest-01.musites.org/api/social-inclusion/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        //Insert json data to the request
+        // insert json data to the request
         request.httpBody = jsonData
         
         print(request.httpBody ?? "UGH")
